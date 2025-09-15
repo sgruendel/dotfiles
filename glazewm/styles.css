@@ -1,11 +1,11 @@
-/* see https://github.com/catppuccin/palette/blob/main/docs/css.md */
-@import url('https://unpkg.com/@catppuccin/palette/css/catppuccin.css');
-
 /**
  * Import the Nerdfonts icon font.
  * Ref https://www.nerdfonts.com/cheat-sheet for a cheatsheet of available Nerdfonts icons.
  */
 @import 'https://www.nerdfonts.com/assets/css/webfont.css';
+
+/* see https://github.com/catppuccin/palette/blob/main/docs/css.md */
+@import url('https://unpkg.com/@catppuccin/palette/css/catppuccin.css');
 
 :root {
   --text-size: 14px;
@@ -24,43 +24,8 @@
   );
 }
 
-@media (prefers-color-scheme: light) {
-  /*
-  body {
-    color: var(--text-color-light);
-  }
-  */
-
-  i {
-    color: var(--icon-color-light);
-  }
-
-  /*
-  #root {
-    background: var(--background-color-light);
-  }
-  */
-}
-
-@media (prefers-color-scheme: dark) {
-  /*
-  body {
-    color: var(--text-color-dark);
-  }
-  */
-
-  i {
-    color: var(--icon-color-dark);
-  }
-
-  /*
-  #root {
-    background: var(--background-color-dark);
-  }
-  */
-}
-
 i {
+  color: var(--ctp-frappe-surface2);
   margin-right: 7px;
   font-size: var(--icon-size);
 }
@@ -86,7 +51,7 @@ body,
 }
 
 #root {
-  background: rgba(var(--ctp-frappe-base-rgb) / 0.9);
+  background: var(--ctp-frappe-crust);
   border-bottom: 1px solid rgb(255 255 255 / 5%);
 }
 
@@ -130,29 +95,30 @@ body,
 }
 
 .workspace {
-  background: rgb(255 255 255 / 5%);
+  background: var(--ctp-frappe-surface0);
   margin-right: 4px;
   padding: 4px 8px;
-  color: rgb(255 255 255 / 90%);
+  color: var(--ctp-frappe-text);
   border: none;
   border-radius: 2px;
   cursor: pointer;
 
   &.displayed {
-    background: rgb(255 255 255 / 15%);
+    background: var(--ctp-frappe-surface2);
   }
 
   &.focused,
   &:hover {
-    background: rgb(75 115 255 / 50%);
+    background: var(--ctp-frappe-mauve);
+    color: var(--ctp-frappe-crust);
   }
 }
 
 .binding-mode,
 .tiling-direction,
 .paused-button {
-  background: rgb(255 255 255 / 15%);
-  color: rgb(255 255 255 / 90%);
+  background: var(--ctp-frappe-surface0);
+  color: var(--ctp-frappe-text);
   border-radius: 2px;
   line-height: 1;
   padding: 4px 8px;
@@ -165,7 +131,7 @@ body,
 }
 
 .cpu .high-usage {
-  color: #900029;
+  color: var(--ctp-mocha-red);
 }
 
 .battery {
