@@ -23,6 +23,7 @@ function ff {
     fzf --preview "bat --style=numbers --color=always {}" @Args
 }
 
+Remove-Item Alias:cd -ErrorAction SilentlyContinue
 function cd {
     param(
         [string]$Path
