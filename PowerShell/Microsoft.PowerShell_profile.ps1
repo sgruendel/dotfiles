@@ -1,5 +1,8 @@
 # PowerShell 7
 
+# see https://github.com/basecamp/omarchy/blob/master/default/bash/aliases
+
+Remove-Item Alias:ls -ErrorAction SilentlyContinue
 function ls {
     eza -lh --group-directories-first --icons=auto @Args
 }
@@ -76,6 +79,9 @@ function n {
 function gcm { git commit -m "$Args" }
 function gcam { git commit -a -m "$Args" }
 function gcad { git commit -a --amend @Args }
+
+# see https://github.com/basecamp/omarchy/blob/master/default/bash/init
+Invoke-Expression (&starship init powershell)
 
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
 
