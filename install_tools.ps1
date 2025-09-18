@@ -9,3 +9,8 @@ winget install -e fzf
 winget install -e BurntSushi.ripgrep.MSVC
 winget install -e starship
 winget install -e ajeetdsouza.zoxide
+
+# install neovim / LazyVim
+winget install -e Neovim.Neovim
+git clone https://github.com/LazyVim/starter $env:LOCALAPPDATA\nvim
+Remove-Item $env:LOCALAPPDATA\nvim\.git -Recurse -Force
