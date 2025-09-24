@@ -1,0 +1,44 @@
+[user]
+  name = Stefan Gründel
+  email = 530272+sgruendel@users.noreply.github.com
+
+[alias]
+  co = checkout
+  br = branch
+  ci = commit
+  st = status
+  lol = log --oneline --graph -all
+
+[column]
+  ui = auto
+[branch]
+  sort = -committerdate
+[tag]
+  sort = version:refname
+[init]
+  defaultBranch = main
+[diff]
+  algorithm = histogram
+  colorMoved = plain
+  mnemonicPrefix = true
+  renames = true
+[merge]
+  conflictstyle = zdiff3
+[push]
+  default = simple
+  autoSetupRemote = true
+  followTags = true
+[pull]
+  rebase = true
+[fetch]
+  prune = true
+  pruneTags = true
+  all = true
+
+[rerere]
+  enabled = true
+  autoupdate = true
+[rebase]
+  autoSquash = true
+  autoStash = true
+  updateRefs = true
