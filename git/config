@@ -7,7 +7,7 @@
   br = branch
   ci = commit
   st = status
-  lol = log --oneline --graph -all
+  lol = log --oneline --graph --all
 
 [column]
   ui = auto
