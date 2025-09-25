@@ -1,0 +1,35 @@
+%YAML 1.3
+---
+- Key: [Open Emoji Panel, pressed]
+- Execute: [walker, -m, Emojis]
+...
+---
+- Key: [Snipping Tool, pressed]
+- Execute: omarchy-cmd-screenshot
+...
+---
+- And:
+  - Key: [Snipping Tool, pressed]
+  - Modifiers: Shift
+- Execute: [omarchy-cmd-screenshot, window]
+...
+---
+- Key: [Mute Microphone, pressed]
+- Execute: [pamixer, --source, '63', -t]
+...
+---
+- Key: [MultiPlatform Search, pressed]
+- Execute: [walker, -m, Finder]
+...
+---
+- Key: [Mute Fn, pressed]
+- Execute: [pamixer, -t]
+...
+---
+- Key: [Volume Down Fn, pressed]
+- Execute: [pamixer, -d, '5']
+...
+---
+- Key: [Volume Up Fn, pressed]
+- Execute: [pamixer, -i, '5']
+...
