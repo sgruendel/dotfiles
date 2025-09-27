@@ -15,9 +15,8 @@
     "cpu",
     "battery"
   ],
+  // see https://github.com/basecamp/omarchy/discussions/1316
   "hyprland/workspaces": {
-    "all-outputs": "false",
-    "on-click": "activate",
     "format": "{icon}",
     "format-icons": {
       "default": "",
@@ -30,11 +29,12 @@
       "7": "7",
       "8": "8",
       "9": "9",
-      "active": "󱓻"
+      "active": "󱓻",
+      "urgent":  ""
     },
     "persistent-workspaces": {
-      "desc:Dell Inc. DELL U2722DE": [1, 2, 4, 6, 8],
-      "desc:Dell Inc. DELL U2721DE": [3, 5, 7, 9]
+      "DP-10": [1, 2, 4, 6, 8],
+      "DP-11": [3, 5, 7, 9]
     }
   },
   // see https://github.com/basecamp/omarchy/discussions/111
