@@ -1,0 +1,35 @@
+{
+  "workbench.colorTheme": "Catppuccin Frappé",
+  "workbench.iconTheme": "catppuccin-frappe",
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "[powershell]": {
+    "debug.saveBeforeStart": "nonUntitledEditorsInActiveGroup",
+    "editor.semanticHighlighting.enabled": false,
+    "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?"
+  },
+  "files.autoSave": "onWindowChange",
+  "editor.lineNumbers": "relative",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "vim.leader": "<space>",
+  "vim.hlsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.commandLineModeKeyBindings": [],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    { "before": ["H"], "commands": ["workbench.action.previousEditor"] },
+    { "before": ["L"], "commands": ["workbench.action.nextEditor"] }
+  ],
+  "vim.statusBarColorControl": true,
+  //"vim.statusBarColors.normal": ["#8FBCBB", "#434C5E"],
+  "vim.statusBarColors.normal": ["#89a5e8", "#292b3b"],
+  "vim.statusBarColors.insert": "#a2ca86",
+  "vim.statusBarColors.visual": "#c599e0",
+  "vim.statusBarColors.visualline": "#B48EAD",
+  "vim.statusBarColors.visualblock": "#A3BE8C",
+  "vim.statusBarColors.replace": "#D08770",
+  "vim.statusBarColors.commandlineinprogress": "#e99a73",
+  "vim.statusBarColors.searchinprogressmode": "#007ACC",
+  "vim.statusBarColors.easymotionmode": "#007ACC",
+  "vim.statusBarColors.easymotioninputmode": "#007ACC",
+  "vim.statusBarColors.surroundinputmode": "#007ACC"
+}
