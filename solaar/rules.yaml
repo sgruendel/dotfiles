@@ -1,5 +1,9 @@
 %YAML 1.3
 ---
+- Key: [Voice Dictation, pressed]
+- Execute: xournalpp
+...
+---
 - Key: [Open Emoji Panel, pressed]
 - Execute: [walker, -m, Emojis]
 ...
