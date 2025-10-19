@@ -17,6 +17,7 @@
   ],
   // see https://github.com/basecamp/omarchy/discussions/1316
   "hyprland/workspaces": {
+    "on-click": "activate",
     "format": "{icon}",
     "format-icons": {
       "default": "",
@@ -139,7 +140,7 @@
     "modules": ["custom/expand-icon", "tray"]
   },
   "custom/expand-icon": {
-    "format": " ",
+    "format": "  ",
     "tooltip": false
   },
   "custom/screenrecording-indicator": {
@@ -150,6 +151,6 @@
   },
   "tray": {
     "icon-size": 12,
-    "spacing": 12
+    "spacing": 17
   }
 }
