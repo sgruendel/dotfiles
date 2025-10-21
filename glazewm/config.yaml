@@ -228,13 +228,21 @@ window_behavior:
 workspaces:
   - name: '1'
   - name: '2'
+#    bind_to_monitor: 1
   - name: '3'
+#    bind_to_monitor: 2
   - name: '4'
+#    bind_to_monitor: 1
   - name: '5'
+#    bind_to_monitor: 2
   - name: '6'
+#    bind_to_monitor: 1
   - name: '7'
+#    bind_to_monitor: 2
   - name: '8'
+#    bind_to_monitor: 1
   - name: '9'
+#    bind_to_monitor: 2
 
 window_rules:
   - commands: ['ignore']
@@ -293,11 +301,17 @@ window_rules:
       - window_process: { equals: 'idea64' }
         window_title: { equals: 'Create New Branch' }
       - window_process: { equals: 'idea64' }
+        window_title: { equals: 'Delete' }
+      - window_process: { equals: 'idea64' }
         window_title: { equals: 'Docker' }
+      - window_process: { equals: 'idea64' }
+        window_title: { equals: 'Git Merge Problem' }
       - window_process: { equals: 'idea64' }
         window_title: { equals: 'Import Module' }
       - window_process: { equals: 'idea64' }
         window_title: { equals: 'Manage Subscriptions' }
+      - window_process: { equals: 'idea64' }
+        window_title: { equals: 'Move' }
       - window_process: { equals: 'idea64' }
         window_title: { equals: 'Plugin Updates' }
       - window_process: { equals: 'idea64' }
@@ -407,31 +421,31 @@ keybindings:
 
   # Change the focused window to be tiling.
   - commands: ['toggle-tiling']
-    bindings: ['lwin+v', 'rwin+v']
+    bindings: ['lwin+t', 'rwin+t']
 
   # Change the focused window to be fullscreen.
   - commands: ['toggle-fullscreen']
-    bindings: ['f11']
+    bindings: ['lwin+f', 'rwin+f']
 
   # Minimize focused window.
-  - commands: ['toggle-minimized']
-    bindings: ['alt+m']
+  #- commands: ['toggle-minimized']
+  #  bindings: ['alt+m']
 
   # Close focused window.
   - commands: ['close']
     bindings: ['lwin+w', 'rwin+w']
 
   # Kill GlazeWM process safely.
-  - commands: ['wm-exit']
-    bindings: ['alt+shift+e']
+  #- commands: ['wm-exit']
+  #  bindings: ['alt+shift+e']
 
   # Re-evaluate configuration file.
   - commands: ['wm-reload-config']
     bindings: ['alt+shift+r']
 
   # Redraw all windows.
-  - commands: ['wm-redraw']
-    bindings: ['alt+shift+w']
+  #- commands: ['wm-redraw']
+  #  bindings: ['alt+shift+w']
 
   # Launch CMD terminal. Alternatively, use `shell-exec wt` or
   # `shell-exec %ProgramFiles%/Git/git-bash.exe` to start Windows
@@ -500,23 +514,27 @@ keybindings:
   - commands: ['move --workspace 9', 'focus --workspace 9']
     bindings: ['lwin+shift+9']
 
+ # Toggle transparency
+  - commands: ['set-transparency --opacity 100%']
+    bindings: ['lwin+back', 'rwin+back']
+
   # my Application bindings
   - commands: ['shell-exec wt.exe new-tab -p Ubuntu-24.04']
     bindings: ['lwin+enter', 'rwin+enter']
   - commands: ['shell-exec powershell']
-    bindings: ['lwin+shift+enter', 'rwin+shift+enter']
+    bindings: ['lwin+shift+alt+enter', 'rwin+shift+alt+enter']
   - commands: ['shell-exec explorer.exe']
-    bindings: ['lwin+f', 'rwin+f']
+    bindings: ['lwin+shift+f', 'rwin+shift+f']
   - commands: ['shell-exec chrome.exe --new-window']
-    bindings: ['lwin+b', 'rwin+b']
-  - commands: ['shell-exec chrome.exe --incognito']
     bindings: ['lwin+shift+b', 'rwin+shift+b']
+  - commands: ['shell-exec chrome.exe --incognito']
+    bindings: ['lwin+shift+alt+b', 'rwin+shift+alt+b']
   - commands: ['shell-exec chrome.exe --app=https://spotify.com']
-    bindings: ['lwin+m', 'rwin+m']
+    bindings: ['lwin+shift+m', 'rwin+shift+m']
   - commands: ['shell-exec notepad++']
-    bindings: ['lwin+n', 'rwin+n']
+    bindings: ['lwin+shift+n', 'rwin+shift+n']
   - commands: ['shell-exec taskmgr.exe']
-    bindings: ['lwin+t', 'rwin+t']
+    bindings: ['lwin+shift+t', 'rwin+shift+t']
   - commands: ['shell-exec ms-teams.exe']
     bindings: ['lwin+shift+g', 'rwin+shift+g']
   #bind = SUPER, D, exec, $terminal -e lazydocker
@@ -525,22 +543,22 @@ keybindings:
   #bind = SUPER, slash, exec, uwsm app -- 1password
 
   - commands: ['shell-exec chrome.exe --app=https://chatgpt.com']
-    bindings: ['lwin+a', 'rwin+a']
-  - commands: ['shell-exec chrome.exe --app=https://grok.com']
     bindings: ['lwin+shift+a', 'rwin+shift+a']
+  - commands: ['shell-exec chrome.exe --app=https://grok.com']
+    bindings: ['lwin+shift+alt+a', 'rwin+shift+alt+a']
   - commands: ['shell-exec chrome.exe --app=https://calendar.google.com']
     bindings: ['lwin+c', 'rwin+c']
   - commands: ['shell-exec ms-outlook:launch:calendar']
     bindings: ['lwin+shift+c', 'rwin+shift+c']
   - commands: ['shell-exec chrome.exe --app=https://mail.google.com']
-    bindings: ['lwin+e', 'rwin+e']
-  - commands: ['shell-exec olk.exe']
     bindings: ['lwin+shift+e', 'rwin+shift+e']
+  - commands: ['shell-exec olk.exe']
+    bindings: ['lwin+shift+alt+e', 'rwin+shift+alt+e']
   - commands: ['shell-exec chrome.exe --app=https://youtube.com']
-    bindings: ['lwin+y', 'rwin+y']
+    bindings: ['lwin+shift+y', 'rwin+shift+y']
   # bind = SUPER SHIFT, G, exec, $webapp="https://web.whatsapp.com/"
   # bind = SUPER ALT, G, exec, $webapp="https://messages.google.com/web/conversations"
   - commands: ['shell-exec chrome.exe --app=https://x.com']
-    bindings: ['lwin+x', 'rwin+x']
-  - commands: ['shell-exec chrome.exe --app=https://x.com/compose/post']
     bindings: ['lwin+shift+x', 'rwin+shift+x']
+  - commands: ['shell-exec chrome.exe --app=https://x.com/compose/post']
+    bindings: ['lwin+shift+alt+x', 'rwin+shift+alt+x']
