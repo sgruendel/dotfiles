@@ -66,8 +66,9 @@
   "clock": {
     "format": "{:L%a %d %b W%V %H:%M}",
     "format-alt": "{:L%d %B W%V %Y}",
+    // see https://github.com/basecamp/omarchy/pull/3021
+    "locale": "de_DE.UTF-8",
     "tooltip-format": "<tt>{calendar}</tt>",
-    "on-click-right": "omarchy-launch-floating-terminal-with-presentation omarchy-tz-select",
     "calendar": {
       "mode": "year",
       "mode-mon-col": 3,
@@ -80,7 +81,13 @@
         "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
         "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
       }
-    }
+    },
+    "actions": {
+      "on-click-middle": "mode",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    },
+    "on-click-right": "omarchy-launch-floating-terminal-with-presentation omarchy-tz-select"
   },
   "network": {
     "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
