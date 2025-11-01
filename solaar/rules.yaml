@@ -4,16 +4,16 @@
 - Execute: xournalpp
 ...
 ---
-- Key: [Open Emoji Panel, pressed]
-- Execute: [walker, -m, Emojis]
+- Key: [Emoji, pressed]
+- Execute: [walker, -m, symbols]
 ...
 ---
-- Key: [Snipping Tool, pressed]
+- Key: [Screen Capture, pressed]
 - Execute: omarchy-cmd-screenshot
 ...
 ---
 - And:
-  - Key: [Snipping Tool, pressed]
+  - Key: [Screen Capture, pressed]
   - Modifiers: Shift
 - Execute: [omarchy-cmd-screenshot, window]
 ...
@@ -23,7 +23,7 @@
 ...
 ---
 - Key: [MultiPlatform Search, pressed]
-- Execute: [walker, -m, Finder]
+- Execute: [walker, -m, files]
 ...
 ---
 - Key: [Mute Fn, pressed]
