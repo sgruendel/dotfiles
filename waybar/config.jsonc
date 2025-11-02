@@ -125,7 +125,9 @@
     "format": "",
     "format-disabled": "󰂲",
     "format-connected": "",
-    "tooltip-format": "Devices connected: {num_connections}",
+    "tooltip-format-connected": "Devices connected: {num_connections}\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\tBattery: {device_battery_percentage}%",
     "on-click": "blueberry"
   },
   "pulseaudio": {
