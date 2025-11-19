@@ -14,3 +14,6 @@ winget install -e ajeetdsouza.zoxide
 winget install -e Neovim.Neovim
 git clone https://github.com/LazyVim/starter $env:LOCALAPPDATA\nvim
 Remove-Item $env:LOCALAPPDATA\nvim\.git -Recurse -Force
+
+# https://github.com/koalaman/shellcheck
+winget install -e koalaman.shellcheck

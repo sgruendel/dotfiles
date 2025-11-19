@@ -32,3 +32,6 @@ sudo apt-get update
 sudo apt-get install neovim build-essential
 git clone https://github.com/LazyVim/starter ~/.config/nvim
 rm -rf ~/.config/nvim/.git
+
+# https://github.com/koalaman/shellcheck
+sudo apt-get install shellcheck
