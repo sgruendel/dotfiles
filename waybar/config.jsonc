@@ -30,11 +30,12 @@
       "7": "7",
       "8": "8",
       "9": "9",
+      "10": "0",
       "active": "󱓻",
       "urgent":  ""
     },
     "persistent-workspaces": {
-      "DP-10": [1, 2, 4, 6, 8],
+      "DP-10": [1, 2, 4, 6, 8, 10],
       "DP-11": [3, 5, 7, 9]
     }
   },
@@ -61,7 +62,7 @@
   "cpu": {
     "interval": 5,
     "format": "󰍛",
-    "on-click": "xdg-terminal-exec btop"
+    "on-click": "omarchy-launch-or-focus-tui btop"
   },
   "clock": {
     "format": "{:L%a %d %b W%V %H:%M}",
@@ -124,15 +125,16 @@
   "bluetooth": {
     "format": "",
     "format-disabled": "󰂲",
-    "format-connected": "",
+    "format-connected": "󰂱",
+    "format-no-controller": "",
     "tooltip-format-connected": "Devices connected: {num_connections}\n\n{device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}",
     "tooltip-format-enumerate-connected-battery": "{device_alias}\tBattery: {device_battery_percentage}%",
-    "on-click": "blueberry"
+    "on-click": "omarchy-launch-bluetooth"
   },
   "pulseaudio": {
     "format": "{icon}",
-    "on-click": "xdg-terminal-exec --app-id=com.omarchy.Wiremix -e wiremix",
+    "on-click": "omarchy-launch-or-focus-tui wiremix",
     "on-click-right": "pamixer -t",
     "tooltip-format": "Playing at {volume}%",
     "scroll-step": 5,
@@ -150,7 +152,7 @@
     "modules": ["custom/expand-icon", "tray"]
   },
   "custom/expand-icon": {
-    "format": "",
+    "format": "",
     "tooltip": false
   },
   "custom/screenrecording-indicator": {
