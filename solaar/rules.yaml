@@ -1,6 +1,6 @@
 %YAML 1.3
 ---
-- Key: [Voice Dictation, pressed]
+- Key: [Dictation, pressed]
 - Execute: xournalpp
 ...
 ---
@@ -12,28 +12,22 @@
 - Execute: omarchy-cmd-screenshot
 ...
 ---
-- And:
-  - Key: [Screen Capture, pressed]
-  - Modifiers: Shift
-- Execute: [omarchy-cmd-screenshot, window]
-...
----
 - Key: [Mute Microphone, pressed]
-- Execute: [pamixer, --source, '63', -t]
+- Execute: [pamixer, --source, '66', -t]
 ...
 ---
 - Key: [MultiPlatform Search, pressed]
 - Execute: [walker, -m, files]
 ...
 ---
-- Key: [Mute Fn, pressed]
+- Key: [Mute Sound, pressed]
 - Execute: [pamixer, -t]
 ...
 ---
-- Key: [Volume Down Fn, pressed]
+- Key: [Volume Down, pressed]
 - Execute: [pamixer, -d, '5']
 ...
 ---
-- Key: [Volume Up Fn, pressed]
+- Key: [Volume Up, pressed]
 - Execute: [pamixer, -i, '5']
 ...
