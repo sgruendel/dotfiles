@@ -8,17 +8,85 @@
     "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?"
   },
   "files.autoSave": "onWindowChange",
-  "editor.lineNumbers": "relative",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "vim.leader": "<space>",
   "vim.hlsearch": true,
+  "vim.highlightedyank.enable": true,
   "vim.useSystemClipboard": true,
-  "vim.commandLineModeKeyBindings": [],
+  // my stuff based on LazyVim keymaps
   "vim.normalModeKeyBindingsNonRecursive": [
+    // https://www.lazyvim.org/keymaps#snacksnvim
+    {
+      "before": ["<leader>", "<space>"],
+      "commands": ["workbench.action.files.openFile"]
+    },
+    {
+      "before": ["<leader>", ","],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["<leader>", "/"],
+      "commands": ["workbench.action.findInFiles"]
+    },
+    {
+      "before": ["<leader>", "e"],
+      "commands": ["workbench.view.explorer"]
+    },
+    {
+      "before": ["<leader>", "f", "b"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["<leader>", "f", "B"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["<leader>", "f", "e"],
+      "commands": ["workbench.view.explorer"]
+    },
+    {
+      "before": ["<leader>", "f", "E"],
+      "commands": ["workbench.view.explorer"]
+    },
+    {
+      "before": ["<leader>", "f", "f"],
+      "commands": ["workbench.action.files.openFile"]
+    },
+    {
+      "before": ["<leader>", "f", "F"],
+      "commands": ["workbench.action.files.openFile"]
+    },
+    {
+      "before": ["<leader>", "f", "r"],
+      "commands": ["workbench.action.quickOpenRecent"]
+    },
+    // git
+    {
+      "before": ["<leader>", "g", "b"],
+      "commands": ["git.blame.toggleEditorDecoration"]
+    },
+    {
+      "before": ["<leader>", "g", "d"],
+      "commands": ["gitlens.diffWithPrevious"]
+    },
+    {
+      "before": ["<leader>", "g", "D"],
+      "commands": ["gitlens.diffWithWorking"]
+    },
+    {
+      "before": ["<leader>", "g", "g"],
+      "commands": ["workbench.view.scm"]
+    },
+    {
+      "before": ["<leader>", "g", "G"],
+      "commands": ["workbench.view.scm"]
+    },
+
     { "before": ["H"], "commands": ["workbench.action.previousEditor"] },
     { "before": ["L"], "commands": ["workbench.action.nextEditor"] }
   ],
+  "vim.smartRelativeLine": true,
   "vim.statusBarColorControl": true,
   //"vim.statusBarColors.normal": ["#8FBCBB", "#434C5E"],
   "vim.statusBarColors.normal": ["#89a5e8", "#292b3b"],
