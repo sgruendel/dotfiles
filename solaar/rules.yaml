@@ -31,3 +31,19 @@
 - Key: [Volume Up, pressed]
 - Execute: [pamixer, -i, '5']
 ...
+---
+- Key: [Calculator, pressed]
+- Execute: [walker, -m, calc]
+...
+---
+- Key: [Screen Capture/Print Screen, pressed]
+- Execute: omarchy-cmd-screenshot
+...
+---
+- Key: [App Contextual Menu/Right Click, pressed]
+- Execute: walker
+...
+---
+- Key: [Screen Lock, pressed]
+- Execute: omarchy-lock-screen
+...
