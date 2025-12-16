@@ -34,10 +34,10 @@
       "active": "󱓻",
       "urgent":  ""
     },
-    "persistent-workspaces": {
-      "DP-10": [1, 2, 4, 6, 8, 10],
-      "DP-11": [3, 5, 7, 9]
-    }
+    //"persistent-workspaces": {
+    //  "DP-7": [1, 2, 4, 6, 8, 10],
+    //  "DP-8": [3, 5, 7, 9]
+    //}
   },
   // see https://github.com/basecamp/omarchy/discussions/111
   "hyprland/language": {
@@ -62,7 +62,8 @@
   "cpu": {
     "interval": 5,
     "format": "󰍛",
-    "on-click": "omarchy-launch-or-focus-tui btop"
+    "on-click": "omarchy-launch-or-focus-tui btop",
+    "on-click-right": "alacritty"
   },
   "clock": {
     "format": "{:L%a %d %b W%V %H:%M}",
