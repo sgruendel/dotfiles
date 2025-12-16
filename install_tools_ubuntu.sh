@@ -25,11 +25,13 @@ tar xf lazygit.tar.gz lazygit
 sudo install lazygit -D -t /usr/local/bin/
 rm lazygit lazygit.tar.gz
 
-# neovim / LazyVim, see https://medium.com/@jogarcia/install-neovim-on-debian-based-c4392a726320
-# on debian, might need "sudo apt-get install software-properties-common" first
-sudo add-apt-repository -y ppa:neovim-ppa/unstable
-sudo apt-get update
-sudo apt-get install neovim build-essential
+# neovim / LazyVim, see https://gist.github.com/lanefu/63881e9dc22cdb2607d3c3c22a64fb13
+sudo apt-get install build-essential cmake gettext
+cd ~/src/github
+git clone https://github.com/neovim/neovim
+cd neovim
+make -j8 CMAKE_BUILD_TYPE=RelWithDebInfo
+sudo make install
 git clone https://github.com/LazyVim/starter ~/.config/nvim
 rm -rf ~/.config/nvim/.git
 
