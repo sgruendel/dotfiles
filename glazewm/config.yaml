@@ -228,21 +228,23 @@ window_behavior:
 workspaces:
   - name: '1'
   - name: '2'
-#    bind_to_monitor: 1
+    bind_to_monitor: 1
   - name: '3'
-#    bind_to_monitor: 2
+    bind_to_monitor: 2
   - name: '4'
-#    bind_to_monitor: 1
+    bind_to_monitor: 1
   - name: '5'
-#    bind_to_monitor: 2
+    bind_to_monitor: 2
   - name: '6'
-#    bind_to_monitor: 1
+    bind_to_monitor: 1
   - name: '7'
-#    bind_to_monitor: 2
+    bind_to_monitor: 2
   - name: '8'
-#    bind_to_monitor: 1
+    bind_to_monitor: 1
   - name: '9'
-#    bind_to_monitor: 2
+    bind_to_monitor: 2
+  - name: '0'
+    bind_to_monitor: 1
 
 window_rules:
   - commands: ['ignore']
@@ -284,6 +286,8 @@ window_rules:
         window_class: { equals: 'WinUIDesktopWin32WindowClass' }
       - window_process: { equals: 'SCClient' }
         window_title: { equals: 'Software Center' }
+      - window_process: { equals: 'PowerToys.AdvancedPaste' }
+      - window_process: { equals: 'ScreenToGif' }
       - window_process: { equals: 'SnippingTool' }
       - window_process: { equals: 'Taskmgr' }
       - window_process: { equals: 'idea64' }
@@ -346,7 +350,6 @@ window_rules:
         window_title: { regex: 'Push Commits to .*' }
       - window_process: { equals: 'ms-teams' }
         window_title: { regex: 'Chat | .* | Microsoft Teams' }
-
 
 binding_modes:
   # When enabled, the focused window can be resized via arrow keys or HJKL.
@@ -482,17 +485,19 @@ keybindings:
     bindings: ['lwin+8']
   - commands: ['focus --workspace 9']
     bindings: ['lwin+9']
+  - commands: ['focus --workspace 0']
+    bindings: ['lwin+0']
 
   # Move the focused window's parent workspace to a monitor in a given
   # direction.
   - commands: ['move-workspace --direction left']
-    bindings: ['lwin+shift+h']
+    bindings: ['lwin+shift+alt+left']
   - commands: ['move-workspace --direction right']
-    bindings: ['lwin+shift+l']
-  - commands: ['move-workspace --direction up']
-    bindings: ['lwin+shift+k']
-  - commands: ['move-workspace --direction down']
-    bindings: ['lwin+shift+j']
+    bindings: ['lwin+shift+alt+right']
+  # - commands: ['move-workspace --direction up']
+  #   bindings: ['lwin+shift+k']
+  #  - commands: ['move-workspace --direction down']
+  #   bindings: ['lwin+shift+j']
 
   # Move focused window to a workspace defined in `workspaces` config.
   - commands: ['move --workspace 1', 'focus --workspace 1']
@@ -513,6 +518,8 @@ keybindings:
     bindings: ['lwin+shift+8']
   - commands: ['move --workspace 9', 'focus --workspace 9']
     bindings: ['lwin+shift+9']
+  - commands: ['move --workspace 0', 'focus --workspace 0']
+    bindings: ['lwin+shift+0']
 
  # Toggle transparency
   - commands: ['set-transparency --opacity 100%']
@@ -523,8 +530,10 @@ keybindings:
     bindings: ['lwin+enter', 'rwin+enter']
   - commands: ['shell-exec powershell']
     bindings: ['lwin+shift+alt+enter', 'rwin+shift+alt+enter']
-  - commands: ['shell-exec explorer.exe']
+  - commands: ['shell-exec C:/Program Files/Git/bin/bash.exe -c yazi']
     bindings: ['lwin+shift+f', 'rwin+shift+f']
+  - commands: ['shell-exec explorer.exe']
+    bindings: ['lwin+shift+alt+f', 'rwin+shift+alt+f']
   - commands: ['shell-exec chrome.exe --new-window']
     bindings: ['lwin+shift+b', 'rwin+shift+b']
   - commands: ['shell-exec chrome.exe --incognito']
@@ -535,30 +544,37 @@ keybindings:
     bindings: ['lwin+shift+n', 'rwin+shift+n']
   - commands: ['shell-exec taskmgr.exe']
     bindings: ['lwin+shift+t', 'rwin+shift+t']
+  - commands: ['shell-exec wsl.exe -e /home/gruendel/.local/bin/lazydocker']
+    bindings: ['lwin+shift+d', 'rwin+shift+d']
   - commands: ['shell-exec ms-teams.exe']
     bindings: ['lwin+shift+g', 'rwin+shift+g']
-  #bind = SUPER, D, exec, $terminal -e lazydocker
-  #bind = SUPER, G, exec, uwsm app -- signal-desktop
-  #bind = SUPER, O, exec, uwsm app -- obsidian -disable-gpu
-  #bind = SUPER, slash, exec, uwsm app -- 1password
+  #bindd = SUPER SHIFT, G, Signal, exec, omarchy-launch-or-focus ^signal$ "uwsm-app -- signal-desktop"
+  - commands: ['shell-exec C:\Users\gruendel\AppData\Local\Programs\Obsidian\Obsidian.exe']
+    bindings: ['lwin+shift+o', 'rwin+shift+o']
+  #bindd = SUPER SHIFT, W, Typora, exec, uwsm-app -- typora --enable-wayland-ime
+  #bindd = SUPER SHIFT, SLASH, Passwords, exec, uwsm-app -- 1password
 
   - commands: ['shell-exec chrome.exe --app=https://chatgpt.com']
     bindings: ['lwin+shift+a', 'rwin+shift+a']
   - commands: ['shell-exec chrome.exe --app=https://grok.com']
     bindings: ['lwin+shift+alt+a', 'rwin+shift+alt+a']
   - commands: ['shell-exec chrome.exe --app=https://calendar.google.com']
-    bindings: ['lwin+c', 'rwin+c']
-  - commands: ['shell-exec ms-outlook:launch:calendar']
     bindings: ['lwin+shift+c', 'rwin+shift+c']
+  - commands: ['shell-exec ms-outlook:launch:calendar']
+    bindings: ['lwin+shift+alt+c', 'rwin+shift+alt+c']
   - commands: ['shell-exec chrome.exe --app=https://mail.google.com']
     bindings: ['lwin+shift+e', 'rwin+shift+e']
   - commands: ['shell-exec olk.exe']
     bindings: ['lwin+shift+alt+e', 'rwin+shift+alt+e']
+  - commands: ['shell-exec ms-teams.exe']
+    bindings: ['lwin+shift+alt+t', 'rwin+shift+alt+t']
   - commands: ['shell-exec chrome.exe --app=https://youtube.com']
     bindings: ['lwin+shift+y', 'rwin+shift+y']
   # bind = SUPER SHIFT, G, exec, $webapp="https://web.whatsapp.com/"
   # bind = SUPER ALT, G, exec, $webapp="https://messages.google.com/web/conversations"
-  - commands: ['shell-exec chrome.exe --app=https://x.com']
+  - commands: ['shell-exec chrome.exe --app=https://photos.google.com/']
+    bindings: ['lwin+shift+p', 'rwin+shift+p']
+  - commands: ['shell-exec chrome.exe --app=https://x.com/']
     bindings: ['lwin+shift+x', 'rwin+shift+x']
   - commands: ['shell-exec chrome.exe --app=https://x.com/compose/post']
     bindings: ['lwin+shift+alt+x', 'rwin+shift+alt+x']
