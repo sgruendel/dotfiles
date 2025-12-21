@@ -13,7 +13,7 @@
 ...
 ---
 - Key: [Mute Microphone, pressed]
-- Execute: [pamixer, --source, '66', -t]
+- Execute: muteJabra
 ...
 ---
 - Key: [MultiPlatform Search, pressed]

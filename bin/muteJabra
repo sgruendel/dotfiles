@@ -1,0 +1,2 @@
+#!/bin/sh
+pamixer --source "$(pamixer --list-sources | sed -n '/Jabra SPEAK 510 Mono/ s/^\([0-9]\+\).*/\1/p')" -t
