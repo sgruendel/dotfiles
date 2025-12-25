@@ -13,7 +13,7 @@
 ...
 ---
 - Key: [Mute Microphone, pressed]
-- Execute: muteJabra
+- Execute: mute-jabra
 ...
 ---
 - Key: [MultiPlatform Search, pressed]
