@@ -525,14 +525,14 @@ keybindings:
   - commands: ['set-transparency --opacity 100%']
     bindings: ['lwin+back', 'rwin+back']
 
-  # my Application bindings
+  # Omarchy Application bindings (config/hypr/bindings.conf)
   - commands: ['shell-exec wt.exe new-tab -p Ubuntu-24.04']
     bindings: ['lwin+enter', 'rwin+enter']
   - commands: ['shell-exec powershell']
     bindings: ['lwin+shift+alt+enter', 'rwin+shift+alt+enter']
-  - commands: ['shell-exec C:/Program Files/Git/bin/bash.exe -c yazi']
-    bindings: ['lwin+shift+f', 'rwin+shift+f']
   - commands: ['shell-exec explorer.exe']
+    bindings: ['lwin+shift+f', 'rwin+shift+f']
+  - commands: ['shell-exec C:/Program Files/Git/bin/bash.exe -c yazi']
     bindings: ['lwin+shift+alt+f', 'rwin+shift+alt+f']
   - commands: ['shell-exec chrome.exe --new-window']
     bindings: ['lwin+shift+b', 'rwin+shift+b']
@@ -542,8 +542,6 @@ keybindings:
     bindings: ['lwin+shift+m', 'rwin+shift+m']
   - commands: ['shell-exec notepad++']
     bindings: ['lwin+shift+n', 'rwin+shift+n']
-  - commands: ['shell-exec taskmgr.exe']
-    bindings: ['lwin+shift+t', 'rwin+shift+t']
   - commands: ['shell-exec wsl.exe -e /home/gruendel/.local/bin/lazydocker']
     bindings: ['lwin+shift+d', 'rwin+shift+d']
   - commands: ['shell-exec ms-teams.exe']
@@ -578,3 +576,7 @@ keybindings:
     bindings: ['lwin+shift+x', 'rwin+shift+x']
   - commands: ['shell-exec chrome.exe --app=https://x.com/compose/post']
     bindings: ['lwin+shift+alt+x', 'rwin+shift+alt+x']
+
+  # Omarchy Utilities (default/hypr/bindings/utilities.conf)
+  - commands: ['shell-exec taskmgr.exe']
+    bindings: ['lwin+ctrl+t', 'rwin+ctrl+t']
