@@ -103,6 +103,22 @@
       "before": ["<leader>", "c", "r"],
       "commands": ["editor.action.rename"]
     },
+    {
+      "before": ["<leader>", "s", "s"],
+      "commands": ["workbench.action.gotoSymbol"]
+    },
+    {
+      "before": ["<leader>", "c", "s"],
+      "commands": ["workbench.action.gotoSymbol"]
+    },
+    {
+      "before": ["<leader>", "s", "S"],
+      "commands": ["workbench.action.showAllSymbols"]
+    },
+    {
+      "before": ["<leader>", "c", "S"],
+      "commands": ["workbench.action.showAllSymbols"]
+    },
     // General https://www.lazyvim.org/keymaps#general
     {
       "before": ["H"],
