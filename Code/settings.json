@@ -61,7 +61,64 @@
       "before": ["<leader>", "f", "r"],
       "commands": ["workbench.action.quickOpenRecent"]
     },
+    // General https://www.lazyvim.org/keymaps#general
+    {
+      "before": ["H"],
+      "commands": ["workbench.action.previousEditor"]
+    },
+    {
+      "before": ["L"],
+      "commands": ["workbench.action.nextEditor"]
+    },
+    {
+      "before": ["[", "b"],
+      "commands": ["workbench.action.previousEditor"]
+    },
+    {
+      "before": ["]", "b"],
+      "commands": ["workbench.action.nextEditor"]
+    },
+    {
+      "before": ["<leader>", "b", "d"],
+      "commands": ["workbench.action.closeActiveEditor"]
+    },
+    {
+      "before": ["<leader>", "b", "o"],
+      "commands": ["workbench.action.closeOtherEditors"]
+    },
+    {
+      "before": ["[", "d"],
+      "commands": ["editor.action.marker.prev"]
+    },
+    {
+      "before": ["]", "d"],
+      "commands": ["editor.action.marker.next"]
+    },
+    {
+      "before": ["[", "e"],
+      "commands": ["editor.action.marker.prev"]
+    },
+    {
+      "before": ["]", "e"],
+      "commands": ["editor.action.marker.next"]
+    },
+    {
+      "before": ["[", "w"],
+      "commands": ["editor.action.marker.prev"]
+    },
+    {
+      "before": ["]", "w"],
+      "commands": ["editor.action.marker.next"]
+    },
     // git
+    {
+      "before": ["<leader>", "g", "l"],
+      "commands": ["workbench.scm.history.focus"]
+    },
+    {
+      "before": ["<leader>", "g", "L"],
+      "commands": ["workbench.scm.history.focus"]
+    },
     {
       "before": ["<leader>", "g", "b"],
       "commands": ["git.blame.toggleEditorDecoration"]
@@ -82,6 +139,7 @@
       "before": ["<leader>", "g", "G"],
       "commands": ["workbench.view.scm"]
     },
+
     // LSP https://www.lazyvim.org/keymaps#lsp
     {
       "before": ["g", "y"],
@@ -104,6 +162,14 @@
       "commands": ["editor.action.rename"]
     },
     {
+      "before": ["]", "]"],
+      "commands": ["editor.action.nextSelectionMatchFindAction"]
+    },
+    {
+      "before": ["[", "["],
+      "commands": ["editor.action.previousSelectionMatchFindAction"]
+    },
+    {
       "before": ["<leader>", "s", "s"],
       "commands": ["workbench.action.gotoSymbol"]
     },
@@ -118,23 +184,6 @@
     {
       "before": ["<leader>", "c", "S"],
       "commands": ["workbench.action.showAllSymbols"]
-    },
-    // General https://www.lazyvim.org/keymaps#general
-    {
-      "before": ["H"],
-      "commands": ["workbench.action.previousEditor"]
-    },
-    {
-      "before": ["L"],
-      "commands": ["workbench.action.nextEditor"]
-    },
-    {
-      "before": ["[", "b"],
-      "commands": ["workbench.action.previousEditor"]
-    },
-    {
-      "before": ["]", "b"],
-      "commands": ["workbench.action.nextEditor"]
     }
   ],
   "vim.smartRelativeLine": true,

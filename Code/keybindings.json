@@ -1,26 +1,33 @@
 // Place your key bindings in this file to override the defaults
-// see https://dev.to/ansonh/10-vs-code-vim-tricks-to-boost-your-productivity-1b0n
 [
+  // General https://www.lazyvim.org/keymaps#general
   {
-    "key": "] ]",
-    "command": "editor.action.nextSelectionMatchFindAction",
-    "when": "inputFocus"
+    "key": "alt+j",
+    "command": "editor.action.moveLinesDownAction",
+    "when": "editorTextFocus"
   },
   {
-    "key": "[ [",
-    "command": "editor.action.previousSelectionMatchFindAction",
-    "when": "inputFocus"
+    "key": "alt+k",
+    "command": "editor.action.moveLinesUpAction",
+    "when": "editorTextFocus"
   },
+  {
+    "key": "ctrl+/",
+    "command": "workbench.action.terminal.openNativeConsole",
+    "when": "!terminalFocus"
+  },
+  // LSP https://www.lazyvim.org/keymaps#lsp
   {
     "key": "alt+n",
     "command": "editor.action.nextSelectionMatchFindAction",
-    "when": "inputFocus"
+    "when": "editorTextFocus"
   },
   {
     "key": "alt+p",
     "command": "editor.action.previousSelectionMatchFindAction",
-    "when": "inputFocus"
+    "when": "editorTextFocus"
   },
+  // see https://dev.to/ansonh/10-vs-code-vim-tricks-to-boost-your-productivity-1b0n
   {
     "key": "space e",
     "command": "workbench.action.toggleSidebarVisibility",
