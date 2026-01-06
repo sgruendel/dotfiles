@@ -149,6 +149,13 @@
     "scroll-step": 5,
     "format-muted": "",
     "format-icons": {
+      // see https://github.com/basecamp/omarchy/pull/4100
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
       "default": ["", "", ""]
     }
   },
