@@ -5,11 +5,7 @@
   "spacing": 0,
   "height": 26,
   "modules-left": ["custom/omarchy", "hyprland/workspaces"],
-  "modules-center": [
-    "clock",
-    "custom/update",
-    "custom/screenrecording-indicator"
-  ],
+  "modules-center": ["clock", "custom/update", "custom/voxtype", "custom/screenrecording-indicator"],
   "modules-right": [
     "group/tray-expander",
     "bluetooth",
@@ -153,13 +149,7 @@
     "scroll-step": 5,
     "format-muted": "",
     "format-icons": {
-      // see https://github.com/basecamp/omarchy/pull/4100
       "headphone": "",
-      "hands-free": "",
-      "headset": "",
-      "phone": "",
-      "portable": "",
-      "car": "",
       "default": ["", "", ""]
     }
   },
@@ -184,6 +174,19 @@
     "exec": "$OMARCHY_PATH/default/waybar/indicators/screen-recording.sh",
     "signal": 8,
     "return-type": "json"
+  },
+  "custom/voxtype": {
+    "exec": "omarchy-voxtype-status",
+    "return-type": "json",
+    "format": "{icon}",
+    "format-icons": {
+      "idle": "",
+      "recording": "󰍬",
+      "transcribing": "󰔟"
+    },
+    "tooltip": true,
+    "on-click-right": "omarchy-voxtype-config",
+    "on-click": "omarchy-voxtype-model"
   },
   "tray": {
     "icon-size": 12,
