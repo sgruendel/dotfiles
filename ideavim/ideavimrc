@@ -1,0 +1,144 @@
+" .ideavimrc is a configuration file for IdeaVim plugin. It uses
+"   the same commands as the original .vimrc configuration.
+" You can find a list of commands here: https://jb.gg/h38q75
+" Find more examples here: https://jb.gg/share-ideavimrc
+
+" see https://blog.sebastian-daschner.com/entries/my-favorite-ideavim-features
+" see https://www.reddit.com/r/vim/comments/1bbkyds/comment/kucg0nj/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+" no audio bells, only visual "
+"set visualbell
+
+" paste buffer is normal buffer, see https://stackoverflow.com/questions/27898407/intellij-idea-with-ideavim-cannot-copy-text-from-another-source
+set clipboard+=unnamed
+set clipboard+=ideaput
+
+" enable surround plugin
+set surround
+
+" highlight search results
+set hlsearch
+
+" searching starts immediately when typing
+set incsearch
+
+" ignores case by default in search
+set ignorecase
+
+" doesn't ignore case when UPPERCASE letters exist in search
+set smartcase
+
+" makes $var count as word
+" set iskeyword+=$
+
+" keep 5 lines between cursor and edge of screen
+set scrolloff=5
+
+" keep longer history
+"set history=1000
+
+" display hybrid line numbers
+set number relativenumber
+
+" use IntelliJ JoinLines because it's smart "
+set ideajoin
+
+" go back to former mode after refactoring "
+set idearefactormode=keep
+
+" show the mode and command
+set showmode showcmd
+
+" enable plugins from https://jb.gg/ideavim-plugins, see https://sethlopez.dev/ideavim/
+set NERDTree
+" highlight yanks
+set highlightedyank
+" toggle commented lines
+set commentary
+" add/change/delete surroundings in pairs, e.g. (), {}, [], <>, "", ''
+set surround
+" display available keybindings in a popup
+set which-key
+
+" see https://www.reddit.com/r/vim/comments/1bbkyds/comment/kucg0nj/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+" set clipboard=ideaput
+" set clipboard=unnamed
+
+" TODO https://medium.com/@dbilici/a-practical-ideavim-setup-for-intellij-idea-cf74222e7b45
+
+" Use space as leader
+let mapleader=" "
+
+" my stuff based on LazyVim keymaps
+map <esc>: <Action>(GotoAction)
+
+" https://www.lazyvim.org/keymaps#snacksnvim
+map <leader><Space> <Action>(GotoFile)
+map <leader>, <Action>(Switcher)
+map <leader>/ <Action>(FindInPath)
+map <leader>e <Action>(SelectInProjectView)
+map <leader>fb <Action>(Switcher)
+map <leader>fB <Action>(Switcher)
+" map <leader>fc TODO find config file
+map <leader>fC <Action>(GotoClass)
+map <leader>fe <Action>(SelectInProjectView)
+map <leader>fE <Action>(SelectInProjectView)
+map <leader>ff <Action>(GotoFile)
+map <leader>fF <Action>(GotoFile)
+map <leader>fr <Action>(RecentFiles)
+
+map <leader>gb <Action>(Annotate)
+map <leader>gd <Action>(Compare.SameVersion)
+map <leader>gD <Action>(Compare.SameVersion)
+map <leader>gf <Action>(Vcs.ShowTabbedFileHistory)
+map <leader>gg <Action>(ActivateCommitToolWindow)
+map <leader>gG <Action>(ActivateCommitToolWindow)
+map <leader>gl <Action>(Vcs.Log.OpenAnotherTabInEditor)
+map <leader>gL <Action>(ActivateVersionControlToolWindow)
+
+" https://www.lazyvim.org/keymaps#grug-farnvim
+map <leader>sr <Action>(ReplaceInPath)
+
+" -------------------------------
+" BUFFERS / TABS
+" -------------------------------
+map H <Action>(PreviousTab)
+map L <Action>(NextTab)
+map <leader>bd <Action>(CloseContent)
+
+" -------------------------------
+" WINDOWS / SPLITS
+" -------------------------------
+map <leader>sv <Action>(SplitVertically)
+map <leader>sh <Action>(SplitHorizontally)
+map <leader>sc <Action>(Unsplit)
+map <leader>so <Action>(UnsplitAll)
+map <leader>sw <Action>(NextSplitter)
+
+" -------------------------------
+" CODE
+" -------------------------------
+map <leader>ca <Action>(ShowIntentionActions)
+map <leader>rn <Action>(RenameElement)
+map <leader>fm <Action>(ReformatCode)
+map <leader>gr <Action>(FindUsages)
+
+" -------------------------------
+" TOGGLE / UI
+" -------------------------------
+map <leader>tt <Action>(ActivateTerminalToolWindow)
+map <leader>tp <Action>(ActivateProjectToolWindow)
+map <leader>tr <Action>(Run)
+map <leader>td <Action>(Debug)
+
+" Don't use Ex mode, use Q for formatting.
+"map Q gq
+
+"" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
+"" Map \r to the Reformat Code action
+"map \r <Action>(ReformatCode)
+
+"" Map <leader>d to start debug
+"map <leader>d <Action>(Debug)
+
+"" Map \b to toggle the breakpoint on the current line
+"map \b <Action>(ToggleLineBreakpoint)
