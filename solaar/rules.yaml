@@ -1,7 +1,11 @@
 %YAML 1.3
 ---
 - Key: [Dictation, pressed]
-- Execute: omarchy-voxtype-model
+- Execute: [voxtype, record, start]
+...
+---
+- Key: [Dictation, released]
+- Execute: [voxtype, record, stop]
 ...
 ---
 - Key: [Emoji, pressed]
