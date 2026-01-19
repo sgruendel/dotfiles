@@ -12,11 +12,6 @@
     "when": "editorTextFocus"
   },
   {
-    "key": "ctrl+/",
-    "command": "workbench.action.terminal.openNativeConsole",
-    "when": "!terminalFocus"
-  },
-  {
     "key": "g c o",
     "command": "runCommands",
     "when": "editorTextFocus",
@@ -34,6 +29,11 @@
         "editor.action.commentLine"
       ]
     }
+  },
+  {
+    "key": "ctrl+/",
+    "command": "workbench.action.terminal.openNativeConsole",
+    "when": "!terminalFocus"
   },
   // LSP https://www.lazyvim.org/keymaps#lsp
   {
