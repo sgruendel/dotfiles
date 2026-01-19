@@ -16,6 +16,25 @@
     "command": "workbench.action.terminal.openNativeConsole",
     "when": "!terminalFocus"
   },
+  {
+    "key": "g c o",
+    "command": "runCommands",
+    "when": "editorTextFocus",
+    "args": {
+      "commands": ["editor.action.insertLineAfter", "editor.action.commentLine"]
+    }
+  },
+  {
+    "key": "g c shift+o",
+    "command": "runCommands",
+    "when": "editorTextFocus",
+    "args": {
+      "commands": [
+        "editor.action.insertLineBefore",
+        "editor.action.commentLine"
+      ]
+    }
+  },
   // LSP https://www.lazyvim.org/keymaps#lsp
   {
     "key": "alt+n",
