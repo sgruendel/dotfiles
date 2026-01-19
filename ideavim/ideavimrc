@@ -65,11 +65,38 @@ set which-key
 
 " TODO https://medium.com/@dbilici/a-practical-ideavim-setup-for-intellij-idea-cf74222e7b45
 
+function! AddCommentBelow()
+    normal o
+    normal <Esc>
+    normal gcc
+endfunction
+
+function! AddCommentAbove()
+    normal O
+    normal <Esc>
+    normal gcc
+endfunction
+
 " Use space as leader
 let mapleader=" "
 
 " my stuff based on LazyVim keymaps
 map <esc>: <Action>(GotoAction)
+
+" General https://www.lazyvim.org/keymaps#general
+map <A-j> <Action>(MoveLineDown)
+map <A-k> <Action>(MoveLineUp)
+map H <Action>(PreviousTab)
+map L <Action>(NextTab)
+map [b <Action>(PreviousTab)
+map ]b <Action>(NextTab)
+map <leader>bb <Action>(PreviousWindow)
+map <leader>bd <Action>(CloseContent)
+map <leader>bo <Action>(CloseOthers)
+nmap <ESC> :nohlsearch<cr>
+map gco <Action> :call AddCommentBelow()<cr>
+map gcO <Action> :call AddCommentAbove()<cr>
+map <C-/> <Action>(ActivateTerminalToolWindow)
 
 " https://www.lazyvim.org/keymaps#snacksnvim
 map <leader><Space> <Action>(GotoFile)
@@ -101,8 +128,6 @@ map <leader>sr <Action>(ReplaceInPath)
 " -------------------------------
 " BUFFERS / TABS
 " -------------------------------
-map H <Action>(PreviousTab)
-map L <Action>(NextTab)
 map <leader>bd <Action>(CloseContent)
 
 " -------------------------------
