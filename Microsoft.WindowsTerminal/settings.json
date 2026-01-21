@@ -1,13 +1,25 @@
 {
     "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
-    "actions": [],
+    "actions": [
+        // see https://github.com/anomalyco/opencode/issues/1505#issuecomment-3676028097
+        {
+            "command": {
+                "action": "sendInput",
+                "input": "\u001b[13;2u"
+            },
+            "id": "User.sendInput.ShiftEnterCustom"
+        }
+    ],
     "copyFormatting": "none",
     "copyOnSelect": false,
     "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
     "focusFollowMouse": true,
-    "keybindings": 
-    [
+    "keybindings": [
+        {
+            "keys": "shift+enter",
+            "id": "User.sendInput.ShiftEnterCustom"
+        },
         {
             "id": "Terminal.CopyToClipboard",
             "keys": "ctrl+c"
@@ -73,26 +85,21 @@
             "keys": "win+alt+9"
         }
     ],
-    "newTabMenu": 
-    [
+    "newTabMenu": [
         {
             "type": "remainingProfiles"
         }
     ],
-    "profiles": 
-    {
-        "defaults": 
-        {
+    "profiles": {
+        "defaults": {
             "bellStyle": "window",
             "colorScheme": "Catppuccin Frappe",
-            "font": 
-            {
+            "font": {
                 "face": "CaskaydiaCove Nerd Font",
                 "size": 12
             }
         },
-        "list": 
-        [
+        "list": [
             {
                 "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
@@ -131,8 +138,7 @@
             }
         ]
     },
-    "schemes": 
-    [
+    "schemes": [
         {
             "background": "#303446",
             "black": "#51576D",
@@ -158,24 +164,20 @@
         }
     ],
     "searchWebDefaultQueryUrl": "https://www.google.com/search?q=%22%s%22",
-    "themes": 
-    [
+    "themes": [
         {
             "name": "Catppuccin Frappe",
-            "tab": 
-            {
+            "tab": {
                 "background": "#303446FF",
                 "iconStyle": "default",
                 "showCloseButton": "always",
                 "unfocusedBackground": null
             },
-            "tabRow": 
-            {
+            "tabRow": {
                 "background": "#292C3CFF",
                 "unfocusedBackground": "#232634FF"
             },
-            "window": 
-            {
+            "window": {
                 "applicationTheme": "dark",
                 "experimental.rainbowFrame": false,
                 "frame": null,
