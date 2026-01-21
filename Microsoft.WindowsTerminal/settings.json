@@ -13,8 +13,16 @@
             "keys": "ctrl+c"
         },
         {
+            "id": "Terminal.PreviousTab",
+            "keys": "win+alt+left"
+        },
+        {
             "id": "Terminal.CopyToClipboard",
             "keys": "win+c"
+        },
+        {
+            "id": "Terminal.NextTab",
+            "keys": "win+alt+right"
         },
         {
             "id": "Terminal.PasteFromClipboard",
@@ -29,12 +37,8 @@
             "keys": "alt+shift+d"
         },
         {
-            "id": "Terminal.NextTab",
-            "keys": "win+alt+right"
-        },
-        {
-            "id": "Terminal.PreviousTab",
-            "keys": "win+alt+left"
+            "id": "Terminal.SwitchToTab5",
+            "keys": "win+alt+6"
         },
         {
             "id": "Terminal.SwitchToTab0",
@@ -53,16 +57,12 @@
             "keys": "win+alt+4"
         },
         {
-            "id": "Terminal.SwitchToTab4",
-            "keys": "win+alt+5"
-        },
-        {
-            "id": "Terminal.SwitchToTab5",
-            "keys": "win+alt+6"
-        },
-        {
             "id": "Terminal.SwitchToTab6",
             "keys": "win+alt+7"
+        },
+        {
+            "id": "Terminal.SwitchToTab4",
+            "keys": "win+alt+5"
         },
         {
             "id": "Terminal.SwitchToTab7",
