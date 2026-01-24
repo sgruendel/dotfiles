@@ -67,6 +67,10 @@
       ],
     },
     {
+      "before": ["<leader>", "c", "f"],
+      "commands": ["editor.action.formatDocument"],
+    },
+    {
       "before": ["[", "d"],
       "commands": ["editor.action.marker.prev"],
     },
@@ -89,6 +93,43 @@
     {
       "before": ["]", "w"],
       "commands": ["editor.action.marker.next"],
+    },
+    {
+      "before": ["<leader>", "-"],
+      "commands": ["workbench.action.splitEditorDown"],
+    },
+    {
+      "before": ["<leader>", "w", "s"],
+      "commands": ["workbench.action.splitEditorDown"],
+    },
+    {
+      "before": ["<leader>", "|"],
+      "commands": ["workbench.action.splitEditorRight"],
+    },
+    {
+      "before": ["<leader>", "w", "v"],
+      "commands": ["workbench.action.splitEditorDown"],
+    },
+    {
+      "before": ["<leader>", "w", "d"],
+      "commands": ["workbench.action.closeActiveEditor"],
+    },
+    {
+      "before": ["<leader>", "w", "w"],
+      "commands": ["workbench.action.switchWindow"],
+    },
+    // LSP https://www.lazyvim.org/keymaps#lsp
+    {
+      "before": ["g", "r"],
+      "commands": ["editor.action.referenceSearch.trigger"],
+    },
+    {
+      "before": ["<leader>", "c", "o"],
+      "commands": ["editor.action.organizeImports"],
+    },
+    {
+      "before": ["<leader>", "c", "r"],
+      "commands": ["editor.action.rename"],
     },
     // https://www.lazyvim.org/keymaps#snacksnvim
     {
