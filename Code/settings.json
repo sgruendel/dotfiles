@@ -93,11 +93,11 @@
     // https://www.lazyvim.org/keymaps#snacksnvim
     {
       "before": ["<leader>", "<space>"],
-      "commands": ["workbench.action.files.openFile"],
+      "commands": ["workbench.action.quickOpen"],
     },
     {
       "before": ["<leader>", ","],
-      "commands": ["workbench.action.quickOpen"],
+      "commands": ["buffers.showOpenBuffers"],
     },
     {
       "before": ["<leader>", "/"],
@@ -109,11 +109,11 @@
     },
     {
       "before": ["<leader>", "f", "b"],
-      "commands": ["workbench.action.quickOpen"],
+      "commands": ["buffers.showOpenBuffers"],
     },
     {
       "before": ["<leader>", "f", "B"],
-      "commands": ["workbench.action.quickOpen"],
+      "commands": ["buffers.showOpenBuffers"],
     },
     {
       "before": ["<leader>", "f", "e"],
@@ -137,14 +137,6 @@
     },
     // git
     {
-      "before": ["<leader>", "g", "l"],
-      "commands": ["workbench.scm.history.focus"],
-    },
-    {
-      "before": ["<leader>", "g", "L"],
-      "commands": ["workbench.scm.history.focus"],
-    },
-    {
       "before": ["<leader>", "g", "b"],
       "commands": ["git.blame.toggleEditorDecoration"],
     },
@@ -163,6 +155,14 @@
     {
       "before": ["<leader>", "g", "G"],
       "commands": ["workbench.view.scm"],
+    },
+    {
+      "before": ["<leader>", "g", "l"],
+      "commands": ["workbench.scm.history.focus"],
+    },
+    {
+      "before": ["<leader>", "g", "L"],
+      "commands": ["workbench.scm.history.focus"],
     },
 
     // LSP https://www.lazyvim.org/keymaps#lsp
