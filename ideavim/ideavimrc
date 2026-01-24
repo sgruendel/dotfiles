@@ -81,7 +81,10 @@ endfunction
 let mapleader=" "
 
 " my stuff based on LazyVim keymaps
-map <esc>: <Action>(GotoAction)
+map <leader>a <Action>(GotoAction)
+map <leader>% <Action>(EditorMatchBrace)
+" make Y behave like D and C, yanking till end of line
+map Y y$
 
 " General https://www.lazyvim.org/keymaps#general
 map <A-j> <Action>(MoveLineDown)
@@ -96,7 +99,29 @@ map <leader>bo <Action>(CloseOthers)
 nmap <ESC> :nohlsearch<cr>
 map gco <Action> :call AddCommentBelow()<cr>
 map gcO <Action> :call AddCommentAbove()<cr>
+map <leader>cf <Action>(ReformatCode)
+map [d <Action>(GotoPreviousError)
+map ]d <Action>(GotoNextError)
+map [e <Action>(GotoPreviousError)
+map [e <Action>(GotoPreviousError)
+map ]w <Action>(GotoNextError)
+map ]w <Action>(GotoNextError)
 map <C-/> <Action>(ActivateTerminalToolWindow)
+map <leader>- <Action>(SplitHorizontally)
+map <leader>ws <Action>(SplitHorizontally)
+map <leader>\| <Action>(SplitVertically)
+map <leader>wv <Action>(SplitVertically)
+map <leader>wd <Action>(Unsplit)
+map <leader>ww <Action>(NextSplitter)
+map <leader>w+ <Action>(StretchSplitToTop)
+map <leader>w- <Action>(StretchSplitToBottom)
+map <leader>w< <Action>(StretchSplitToRight)
+map <leader>w> <Action>(StretchSplitToLeft)
+
+" LSP https://www.lazyvim.org/keymaps#lsp
+map gr <Action>(FindUsages)
+map <leader>co <Action>(OptimizeImports)
+map <leader>cr <Action>(RenameElement)
 
 " https://www.lazyvim.org/keymaps#snacksnvim
 map <leader><Space> <Action>(GotoFile)
