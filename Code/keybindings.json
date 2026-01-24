@@ -13,8 +13,7 @@
   },
   {
     "key": "ctrl+/",
-    "command": "workbench.action.terminal.openNativeConsole",
-    "when": "!terminalFocus",
+    "command": "workbench.action.terminal.toggleTerminal",
   },
   // LSP https://www.lazyvim.org/keymaps#lsp
   {
