@@ -4,82 +4,63 @@
   {
     "key": "alt+j",
     "command": "editor.action.moveLinesDownAction",
-    "when": "editorTextFocus"
+    "when": "editorTextFocus",
   },
   {
     "key": "alt+k",
     "command": "editor.action.moveLinesUpAction",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "g c o",
-    "command": "runCommands",
     "when": "editorTextFocus",
-    "args": {
-      "commands": ["editor.action.insertLineAfter", "editor.action.commentLine"]
-    }
-  },
-  {
-    "key": "g c shift+o",
-    "command": "runCommands",
-    "when": "editorTextFocus",
-    "args": {
-      "commands": [
-        "editor.action.insertLineBefore",
-        "editor.action.commentLine"
-      ]
-    }
   },
   {
     "key": "ctrl+/",
     "command": "workbench.action.terminal.openNativeConsole",
-    "when": "!terminalFocus"
+    "when": "!terminalFocus",
   },
   // LSP https://www.lazyvim.org/keymaps#lsp
   {
     "key": "alt+n",
     "command": "editor.action.nextSelectionMatchFindAction",
-    "when": "editorTextFocus"
+    "when": "editorTextFocus",
   },
   {
     "key": "alt+p",
     "command": "editor.action.previousSelectionMatchFindAction",
-    "when": "editorTextFocus"
+    "when": "editorTextFocus",
   },
   // see https://dev.to/ansonh/10-vs-code-vim-tricks-to-boost-your-productivity-1b0n
   {
     "key": "space e",
     "command": "workbench.action.toggleSidebarVisibility",
-    "when": "filesExplorerFocus && !inputFocus"
+    "when": "filesExplorerFocus && !inputFocus",
   },
   {
     "key": "a",
     "command": "explorer.newFile",
-    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus",
   },
   {
     "key": "f",
     "command": "explorer.newFolder",
-    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus",
   },
   {
     "key": "r",
     "command": "renameFile",
-    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus",
   },
   {
     "key": "x",
     "command": "filesExplorer.cut",
-    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus",
   },
   {
     "key": "y",
     "command": "filesExplorer.copy",
-    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !inputFocus"
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !inputFocus",
   },
   {
     "key": "p",
     "command": "filesExplorer.paste",
-    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus"
-  }
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus",
+  },
 ]

@@ -5,7 +5,7 @@
   "[powershell]": {
     "debug.saveBeforeStart": "nonUntitledEditorsInActiveGroup",
     "editor.semanticHighlighting.enabled": false,
-    "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?"
+    "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?",
   },
   "python.defaultInterpreterPath": ".venv/bin/python",
   "python.terminal.activateEnvironment": true,
@@ -21,172 +21,186 @@
     // General https://www.lazyvim.org/keymaps#general
     {
       "before": ["H"],
-      "commands": ["workbench.action.previousEditor"]
+      "commands": ["workbench.action.previousEditor"],
     },
     {
       "before": ["L"],
-      "commands": ["workbench.action.nextEditor"]
+      "commands": ["workbench.action.nextEditor"],
     },
     {
       "before": ["[", "b"],
-      "commands": ["workbench.action.previousEditor"]
+      "commands": ["workbench.action.previousEditor"],
     },
     {
       "before": ["]", "b"],
-      "commands": ["workbench.action.nextEditor"]
+      "commands": ["workbench.action.nextEditor"],
     },
     {
       "before": ["<leader>", "b", "d"],
-      "commands": ["workbench.action.closeActiveEditor"]
+      "commands": ["workbench.action.closeActiveEditor"],
     },
     {
       "before": ["<leader>", "b", "o"],
-      "commands": ["workbench.action.closeOtherEditors"]
+      "commands": ["workbench.action.closeOtherEditors"],
+    },
+    {
+      "before": ["g", "c", "o"],
+      "commands": [
+        "editor.action.insertLineAfter",
+        "editor.action.commentLine",
+      ],
+    },
+    {
+      "before": ["g", "c", "s-o"],
+      "commands": [
+        "editor.action.insertLineBefore",
+        "editor.action.commentLine",
+      ],
     },
     {
       "before": ["[", "d"],
-      "commands": ["editor.action.marker.prev"]
+      "commands": ["editor.action.marker.prev"],
     },
     {
       "before": ["]", "d"],
-      "commands": ["editor.action.marker.next"]
+      "commands": ["editor.action.marker.next"],
     },
     {
       "before": ["[", "e"],
-      "commands": ["editor.action.marker.prev"]
+      "commands": ["editor.action.marker.prev"],
     },
     {
       "before": ["]", "e"],
-      "commands": ["editor.action.marker.next"]
+      "commands": ["editor.action.marker.next"],
     },
     {
       "before": ["[", "w"],
-      "commands": ["editor.action.marker.prev"]
+      "commands": ["editor.action.marker.prev"],
     },
     {
       "before": ["]", "w"],
-      "commands": ["editor.action.marker.next"]
+      "commands": ["editor.action.marker.next"],
     },
     // https://www.lazyvim.org/keymaps#snacksnvim
     {
       "before": ["<leader>", "<space>"],
-      "commands": ["workbench.action.files.openFile"]
+      "commands": ["workbench.action.files.openFile"],
     },
     {
       "before": ["<leader>", ","],
-      "commands": ["workbench.action.quickOpen"]
+      "commands": ["workbench.action.quickOpen"],
     },
     {
       "before": ["<leader>", "/"],
-      "commands": ["workbench.action.findInFiles"]
+      "commands": ["workbench.action.findInFiles"],
     },
     {
       "before": ["<leader>", "e"],
-      "commands": ["workbench.view.explorer"]
+      "commands": ["workbench.view.explorer"],
     },
     {
       "before": ["<leader>", "f", "b"],
-      "commands": ["workbench.action.quickOpen"]
+      "commands": ["workbench.action.quickOpen"],
     },
     {
       "before": ["<leader>", "f", "B"],
-      "commands": ["workbench.action.quickOpen"]
+      "commands": ["workbench.action.quickOpen"],
     },
     {
       "before": ["<leader>", "f", "e"],
-      "commands": ["workbench.view.explorer"]
+      "commands": ["workbench.view.explorer"],
     },
     {
       "before": ["<leader>", "f", "E"],
-      "commands": ["workbench.view.explorer"]
+      "commands": ["workbench.view.explorer"],
     },
     {
       "before": ["<leader>", "f", "f"],
-      "commands": ["workbench.action.files.openFile"]
+      "commands": ["workbench.action.files.openFile"],
     },
     {
       "before": ["<leader>", "f", "F"],
-      "commands": ["workbench.action.files.openFile"]
+      "commands": ["workbench.action.files.openFile"],
     },
     {
       "before": ["<leader>", "f", "r"],
-      "commands": ["workbench.action.quickOpenRecent"]
+      "commands": ["workbench.action.quickOpenRecent"],
     },
     // git
     {
       "before": ["<leader>", "g", "l"],
-      "commands": ["workbench.scm.history.focus"]
+      "commands": ["workbench.scm.history.focus"],
     },
     {
       "before": ["<leader>", "g", "L"],
-      "commands": ["workbench.scm.history.focus"]
+      "commands": ["workbench.scm.history.focus"],
     },
     {
       "before": ["<leader>", "g", "b"],
-      "commands": ["git.blame.toggleEditorDecoration"]
+      "commands": ["git.blame.toggleEditorDecoration"],
     },
     {
       "before": ["<leader>", "g", "d"],
-      "commands": ["gitlens.diffWithPrevious"]
+      "commands": ["gitlens.diffWithPrevious"],
     },
     {
       "before": ["<leader>", "g", "D"],
-      "commands": ["gitlens.diffWithWorking"]
+      "commands": ["gitlens.diffWithWorking"],
     },
     {
       "before": ["<leader>", "g", "g"],
-      "commands": ["workbench.view.scm"]
+      "commands": ["workbench.view.scm"],
     },
     {
       "before": ["<leader>", "g", "G"],
-      "commands": ["workbench.view.scm"]
+      "commands": ["workbench.view.scm"],
     },
 
     // LSP https://www.lazyvim.org/keymaps#lsp
     {
       "before": ["g", "y"],
-      "commands": ["editor.action.goToTypeDefinition"]
+      "commands": ["editor.action.goToTypeDefinition"],
     },
     {
       "before": ["g", "r"],
-      "commands": ["editor.action.goToReferences"]
+      "commands": ["editor.action.goToReferences"],
     },
     {
       "before": ["g", "I"],
-      "commands": ["editor.action.goToImplementation"]
+      "commands": ["editor.action.goToImplementation"],
     },
     {
       "before": ["<leader>", "c", "R"],
-      "commands": ["git.rename"]
+      "commands": ["git.rename"],
     },
     {
       "before": ["<leader>", "c", "r"],
-      "commands": ["editor.action.rename"]
+      "commands": ["editor.action.rename"],
     },
     {
       "before": ["]", "]"],
-      "commands": ["editor.action.nextSelectionMatchFindAction"]
+      "commands": ["editor.action.nextSelectionMatchFindAction"],
     },
     {
       "before": ["[", "["],
-      "commands": ["editor.action.previousSelectionMatchFindAction"]
+      "commands": ["editor.action.previousSelectionMatchFindAction"],
     },
     {
       "before": ["<leader>", "s", "s"],
-      "commands": ["workbench.action.gotoSymbol"]
+      "commands": ["workbench.action.gotoSymbol"],
     },
     {
       "before": ["<leader>", "c", "s"],
-      "commands": ["workbench.action.gotoSymbol"]
+      "commands": ["workbench.action.gotoSymbol"],
     },
     {
       "before": ["<leader>", "s", "S"],
-      "commands": ["workbench.action.showAllSymbols"]
+      "commands": ["workbench.action.showAllSymbols"],
     },
     {
       "before": ["<leader>", "c", "S"],
-      "commands": ["workbench.action.showAllSymbols"]
-    }
+      "commands": ["workbench.action.showAllSymbols"],
+    },
   ],
   "vim.smartRelativeLine": true,
   "vim.statusBarColorControl": true,
@@ -201,5 +215,5 @@
   "vim.statusBarColors.searchinprogressmode": "#007ACC",
   "vim.statusBarColors.easymotionmode": "#007ACC",
   "vim.statusBarColors.easymotioninputmode": "#007ACC",
-  "vim.statusBarColors.surroundinputmode": "#007ACC"
+  "vim.statusBarColors.surroundinputmode": "#007ACC",
 }
