@@ -36,12 +36,21 @@
       "commands": ["workbench.action.nextEditor"],
     },
     {
+      "before": ["<leader>", "b", "b"],
+      "commands": ["workbench.action.previousEditor"],
+    },
+    {
       "before": ["<leader>", "b", "d"],
       "commands": ["workbench.action.closeActiveEditor"],
     },
     {
       "before": ["<leader>", "b", "o"],
       "commands": ["workbench.action.closeOtherEditors"],
+    },
+    {
+      "before": ["<Esc>"],
+      "after": ["<Esc>"],
+      "commands": [":nohl"],
     },
     {
       "before": ["g", "c", "o"],
