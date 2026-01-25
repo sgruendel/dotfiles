@@ -1,0 +1,215 @@
+{
+  "update.mode": "none",
+  "workbench.layoutControl.enabled": false,
+  "window.titleBarStyle": "native",
+  "window.menuBarVisibility": "compact",
+  "window.menuStyle": "custom",
+  "workbench.colorTheme": "Catppuccin Mocha",
+  "workbench.iconTheme": "catppuccin-mocha",
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "[powershell]": {
+    "debug.saveBeforeStart": "nonUntitledEditorsInActiveGroup",
+    "editor.semanticHighlighting.enabled": false,
+    "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?"
+  },
+  "files.autoSave": "onWindowChange",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "vim.leader": "<space>",
+  "vim.hlsearch": true,
+  "vim.highlightedyank.enable": true,
+  "vim.useSystemClipboard": true,
+  // my stuff based on LazyVim keymaps
+  "vim.normalModeKeyBindingsNonRecursive": [
+    // https://www.lazyvim.org/keymaps#snacksnvim
+    {
+      "before": ["<leader>", "<space>"],
+      "commands": ["workbench.action.files.openFile"]
+    },
+    {
+      "before": ["<leader>", ","],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["<leader>", "/"],
+      "commands": ["workbench.action.findInFiles"]
+    },
+    {
+      "before": ["<leader>", "e"],
+      "commands": ["workbench.view.explorer"]
+    },
+    {
+      "before": ["<leader>", "f", "b"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["<leader>", "f", "B"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["<leader>", "f", "e"],
+      "commands": ["workbench.view.explorer"]
+    },
+    {
+      "before": ["<leader>", "f", "E"],
+      "commands": ["workbench.view.explorer"]
+    },
+    {
+      "before": ["<leader>", "f", "f"],
+      "commands": ["workbench.action.files.openFile"]
+    },
+    {
+      "before": ["<leader>", "f", "F"],
+      "commands": ["workbench.action.files.openFile"]
+    },
+    {
+      "before": ["<leader>", "f", "r"],
+      "commands": ["workbench.action.quickOpenRecent"]
+    },
+    // General https://www.lazyvim.org/keymaps#general
+    {
+      "before": ["H"],
+      "commands": ["workbench.action.previousEditor"]
+    },
+    {
+      "before": ["L"],
+      "commands": ["workbench.action.nextEditor"]
+    },
+    {
+      "before": ["[", "b"],
+      "commands": ["workbench.action.previousEditor"]
+    },
+    {
+      "before": ["]", "b"],
+      "commands": ["workbench.action.nextEditor"]
+    },
+    {
+      "before": ["<leader>", "b", "d"],
+      "commands": ["workbench.action.closeActiveEditor"]
+    },
+    {
+      "before": ["<leader>", "b", "o"],
+      "commands": ["workbench.action.closeOtherEditors"]
+    },
+    {
+      "before": ["[", "d"],
+      "commands": ["editor.action.marker.prev"]
+    },
+    {
+      "before": ["]", "d"],
+      "commands": ["editor.action.marker.next"]
+    },
+    {
+      "before": ["[", "e"],
+      "commands": ["editor.action.marker.prev"]
+    },
+    {
+      "before": ["]", "e"],
+      "commands": ["editor.action.marker.next"]
+    },
+    {
+      "before": ["[", "w"],
+      "commands": ["editor.action.marker.prev"]
+    },
+    {
+      "before": ["]", "w"],
+      "commands": ["editor.action.marker.next"]
+    },
+    // git
+    {
+      "before": ["<leader>", "g", "l"],
+      "commands": ["workbench.scm.history.focus"]
+    },
+    {
+      "before": ["<leader>", "g", "L"],
+      "commands": ["workbench.scm.history.focus"]
+    },
+    {
+      "before": ["<leader>", "g", "b"],
+      "commands": ["git.blame.toggleEditorDecoration"]
+    },
+    {
+      "before": ["<leader>", "g", "d"],
+      "commands": ["gitlens.diffWithPrevious"]
+    },
+    {
+      "before": ["<leader>", "g", "D"],
+      "commands": ["gitlens.diffWithWorking"]
+    },
+    {
+      "before": ["<leader>", "g", "g"],
+      "commands": ["workbench.view.scm"]
+    },
+    {
+      "before": ["<leader>", "g", "G"],
+      "commands": ["workbench.view.scm"]
+    },
+
+    // LSP https://www.lazyvim.org/keymaps#lsp
+    {
+      "before": ["g", "y"],
+      "commands": ["editor.action.goToTypeDefinition"]
+    },
+    {
+      "before": ["g", "r"],
+      "commands": ["editor.action.goToReferences"]
+    },
+    {
+      "before": ["g", "I"],
+      "commands": ["editor.action.goToImplementation"]
+    },
+    {
+      "before": ["<leader>", "c", "R"],
+      "commands": ["git.rename"]
+    },
+    {
+      "before": ["<leader>", "c", "r"],
+      "commands": ["editor.action.rename"]
+    },
+    {
+      "before": ["]", "]"],
+      "commands": ["editor.action.nextSelectionMatchFindAction"]
+    },
+    {
+      "before": ["[", "["],
+      "commands": ["editor.action.previousSelectionMatchFindAction"]
+    },
+    {
+      "before": ["<leader>", "s", "s"],
+      "commands": ["workbench.action.gotoSymbol"]
+    },
+    {
+      "before": ["<leader>", "c", "s"],
+      "commands": ["workbench.action.gotoSymbol"]
+    },
+    {
+      "before": ["<leader>", "s", "S"],
+      "commands": ["workbench.action.showAllSymbols"]
+    },
+    {
+      "before": ["<leader>", "c", "S"],
+      "commands": ["workbench.action.showAllSymbols"]
+    }
+  ],
+  "vim.smartRelativeLine": true,
+  "vim.statusBarColorControl": true,
+  //"vim.statusBarColors.normal": ["#8FBCBB", "#434C5E"],
+  "vim.statusBarColors.normal": ["#89a5e8", "#292b3b"],
+  "vim.statusBarColors.insert": "#a2ca86",
+  "vim.statusBarColors.visual": "#c599e0",
+  "vim.statusBarColors.visualline": "#B48EAD",
+  "vim.statusBarColors.visualblock": "#A3BE8C",
+  "vim.statusBarColors.replace": "#D08770",
+  "vim.statusBarColors.commandlineinprogress": "#e99a73",
+  "vim.statusBarColors.searchinprogressmode": "#007ACC",
+  "vim.statusBarColors.easymotionmode": "#007ACC",
+  "vim.statusBarColors.easymotioninputmode": "#007ACC",
+  "vim.statusBarColors.surroundinputmode": "#007ACC",
+  "workbench.colorCustomizations": {
+    "statusBar.background": "#89a5e8",
+    "statusBar.noFolderBackground": "#89a5e8",
+    "statusBar.debuggingBackground": "#89a5e8",
+    "statusBar.foreground": "#292b3b",
+    "statusBar.debuggingForeground": "#292b3b"
+  }
+}
