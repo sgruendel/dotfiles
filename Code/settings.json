@@ -18,14 +18,6 @@
   "vim.useSystemClipboard": true,
   // my stuff based on LazyVim keymaps
   "vim.normalModeKeyBindingsNonRecursive": [
-    {
-      "before": ["<leader>", "c", "a"],
-      "commands": ["editor.action.codeAction"],
-    },
-    {
-      "before": ["<leader>", "c", "s-a"],
-      "commands": ["editor.action.sourceAction"],
-    },
     // General https://www.lazyvim.org/keymaps#general
     {
       "before": ["H"],
