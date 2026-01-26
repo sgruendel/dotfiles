@@ -119,9 +119,16 @@ map <leader>w< <Action>(StretchSplitToRight)
 map <leader>w> <Action>(StretchSplitToLeft)
 
 " LSP https://www.lazyvim.org/keymaps#lsp
-map gr <Action>(FindUsages)
+map gr <Action>(GotoDeclaration)
+map <leader>ca <Action>(ShowIntentionActions)
+map <leader>cA <Action>(Generate)
 map <leader>co <Action>(OptimizeImports)
 map <leader>cr <Action>(RenameElement)
+map <leader>ss <Action>(FileStructurePopup)
+map <leader>sS <Action>(ActivateStructureToolWindow)
+
+" https://www.lazyvim.org/keymaps#grug-farnvim
+map <leader>sr <Action>(ReplaceInPath)
 
 " https://www.lazyvim.org/keymaps#snacksnvim
 map <leader><Space> <Action>(GotoFile)
@@ -147,8 +154,9 @@ map <leader>gG <Action>(ActivateCommitToolWindow)
 map <leader>gl <Action>(Vcs.Log.OpenAnotherTabInEditor)
 map <leader>gL <Action>(ActivateVersionControlToolWindow)
 
-" https://www.lazyvim.org/keymaps#grug-farnvim
-map <leader>sr <Action>(ReplaceInPath)
+" https://www.lazyvim.org/keymaps#troublenvim
+map <leader>cs <Action>(FileStructurePopup)
+map <leader>cS <Action>(ActivateStructureToolWindow)
 
 " -------------------------------
 " BUFFERS / TABS
