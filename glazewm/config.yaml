@@ -350,6 +350,7 @@ window_rules:
         window_title: { regex: 'Push Commits to .*' }
       - window_process: { equals: 'ms-teams' }
         window_title: { regex: 'Chat | .* | Microsoft Teams' }
+      - window_title: { equals: '_crx_nngceckbapebfimnlniiiahkandclblb' } # chrome extension code for Bitwarden
 
 binding_modes:
   # When enabled, the focused window can be resized via arrow keys or HJKL.
