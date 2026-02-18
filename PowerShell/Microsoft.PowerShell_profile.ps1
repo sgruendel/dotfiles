@@ -23,6 +23,14 @@ function ff {
     fzf --preview "bat --style=numbers --color=always {}" @Args
 }
 
+function eff {
+    $selection = ff @Args
+    if (-not $selection) {
+        return
+    }
+    nvim @($selection)
+}
+
 Remove-Item Alias:cd -ErrorAction SilentlyContinue
 function cd {
     param(
