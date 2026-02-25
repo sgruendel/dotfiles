@@ -76,4 +76,11 @@ git clone https://github.com/LazyVim/starter ~/.config/nvim
 rm -rf ~/.config/nvim/.git
 
 # https://github.com/koalaman/shellcheck
-sudo apt-get install shellcheck
+case $ID in
+ubuntu | debian)
+  sudo apt-get install -y shellcheck
+  ;;
+rocky)
+  sudo dnf install -y shellcheck
+  ;;
+esac
