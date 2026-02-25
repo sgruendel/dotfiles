@@ -32,6 +32,8 @@ rocky)
   sudo mv eza /usr/local/bin/eza
   ;;
 esac
+mkdir -p ~/.config/eza
+curl https://raw.githubusercontent.com/catppuccin/eza/refs/heads/main/themes/mocha/catppuccin-mocha-mauve.yml -o ~/.config/eza/theme.yml
 
 # starship, see https://starship.rs/#quick-install
 curl -sS https://starship.rs/install.sh | sh
