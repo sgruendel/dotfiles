@@ -59,7 +59,7 @@ curl https://mise.run | sh
 mise use -g node@lts
 
 # install uv, see https://docs.astral.sh/uv/getting-started/installation/
-curl -LsSf https://astral.sh/uv/install.sh | sh
+curl -LsSf https://astral.sh/uv/install.sh | env UV_INSTALL_DIR=~/.local/bin/ UV_NO_MODIFY_PATH=1 sh
 
 # neovim, see https://neovim.io/doc2/install/#install-from-download
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
