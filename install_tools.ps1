@@ -13,6 +13,9 @@ winget install -e ajeetdsouza.zoxide
 # https://yazi-rs.github.io/docs/installation/#install-with-winget
 winget install -e sxyazi.yazi jqlang.jq
 
+# https://docs.astral.sh/uv/getting-started/installation/
+winget install -e astral-sh.uv
+
 # install neovim / LazyVim
 winget install -e Neovim.Neovim.Nightly
 git clone https://github.com/LazyVim/starter $env:LOCALAPPDATA\nvim

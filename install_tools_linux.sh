@@ -56,6 +56,9 @@ curl https://mise.run | sh
 # install Node.js LTS via mise
 mise use -g node@lts
 
+# install uv, see https://docs.astral.sh/uv/getting-started/installation/
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
 # neovim, see https://neovim.io/doc2/install/#install-from-download
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
 sudo rm -rf /opt/nvim-linux-x86_64
