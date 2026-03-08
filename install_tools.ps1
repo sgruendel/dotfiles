@@ -1,5 +1,6 @@
 # install PowerShell 7
 winget install --id Microsoft.Powershell
+winget install -e Microsoft.Powershell
 
 # install tools
 winget install -e sharkdp.bat
@@ -9,6 +10,9 @@ winget install -e junegunn.fzf
 winget install -e BurntSushi.ripgrep.MSVC
 winget install -e starship
 winget install -e ajeetdsouza.zoxide
+winget install -e psmux
+winget install -e JesseDuffield.Lazydocker
+winget install -e JesseDuffield.lazygit
 
 # https://yazi-rs.github.io/docs/installation/#install-with-winget
 winget install -e sxyazi.yazi jqlang.jq
