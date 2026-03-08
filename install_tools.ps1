@@ -53,3 +53,12 @@ Remove-Item $env:LOCALAPPDATA\nvim\.git -Recurse -Force
 
 # https://github.com/koalaman/shellcheck
 winget install -e koalaman.shellcheck
+
+# install eza Catppuccin theme
+$ezaConfigDir = Join-Path $env:LOCALAPPDATA "eza"
+if (-not (Test-Path $ezaConfigDir)) {
+    New-Item -ItemType Directory -Path $ezaConfigDir | Out-Null
+}
+$ezaThemeUrl = "https://raw.githubusercontent.com/catppuccin/eza/main/themes/mocha/catppuccin-mocha-mauve.yml"
+$ezaThemePath = Join-Path $ezaConfigDir "theme.yml"
+Invoke-WebRequest -Uri $ezaThemeUrl -OutFile $ezaThemePath
