@@ -1,5 +1,4 @@
 # install PowerShell 7
-winget install --id Microsoft.Powershell
 winget install -e Microsoft.Powershell
 
 # install tools
@@ -21,7 +20,34 @@ winget install -e sxyazi.yazi jqlang.jq
 winget install -e astral-sh.uv
 
 # install neovim / LazyVim
-winget install -e Neovim.Neovim.Nightly
+$neovimZipUrl = "https://github.com/neovim/neovim/releases/download/v0.11.6/nvim-win64.zip"
+$neovimZipPath = Join-Path $env:TEMP "nvim-win64.zip"
+$neovimInstallDir = Join-Path $env:LOCALAPPDATA "nvim-win64"
+
+Invoke-WebRequest -Uri $neovimZipUrl -OutFile $neovimZipPath
+if (Test-Path $neovimInstallDir) {
+	Remove-Item $neovimInstallDir -Recurse -Force
+}
+Expand-Archive -Path $neovimZipPath -DestinationPath $env:LOCALAPPDATA -Force
+Remove-Item $neovimZipPath -Force
+
+$neovimBinDir = Join-Path $neovimInstallDir "bin"
+$normalizedNeovimBinDir = $neovimBinDir.TrimEnd('\\')
+$userPath = [Environment]::GetEnvironmentVariable("Path", "User")
+$userPathEntries = @()
+if ($userPath) {
+	$userPathEntries = $userPath -split ';' | Where-Object { $_ }
+}
+
+if (-not ($userPathEntries | Where-Object { $_.TrimEnd('\\') -ieq $normalizedNeovimBinDir })) {
+	$newUserPath = (($userPathEntries + $neovimBinDir) -join ';')
+	[Environment]::SetEnvironmentVariable("Path", $newUserPath, "User")
+}
+
+if (-not (($env:Path -split ';') | Where-Object { $_.TrimEnd('\\') -ieq $normalizedNeovimBinDir })) {
+	$env:Path = "$env:Path;$neovimBinDir"
+}
+
 git clone https://github.com/LazyVim/starter $env:LOCALAPPDATA\nvim
 Remove-Item $env:LOCALAPPDATA\nvim\.git -Recurse -Force
 
