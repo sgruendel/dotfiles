@@ -1,98 +1,29 @@
 # PowerShell 7
 
-# see https://github.com/basecamp/omarchy/blob/master/default/bash/aliases
-
-Remove-Item Alias:ls -ErrorAction SilentlyContinue
-function ls {
-    eza -lh --group-directories-first --icons=auto @Args
+$aliasesScript = Join-Path $PSScriptRoot 'aliases.ps1'
+Write-Host "Loading aliases from $aliasesScript" -ForegroundColor DarkGray
+if (Test-Path $aliasesScript) {
+    . $aliasesScript
+    Write-Host "Aliases loaded (cd, open, lta, ff, eff,.., ...)" -ForegroundColor DarkGray
 }
 
-function lsa {
-    ls -a @Args
-}
-
-function lt {
-    eza --tree --level=2 --long --icons --git @Args
-}
-
-function lta {
-    lt -a @Args
-}
-
-function ff {
-    fzf --preview "bat --style=numbers --color=always {}" @Args
-}
-
-function eff {
-    $selection = ff @Args
-    if (-not $selection) {
-        return
-    }
-    nvim @($selection)
-}
-
-Remove-Item Alias:cd -ErrorAction SilentlyContinue
-function cd {
-    param(
-        [string]$Path
-    )
-
-    if (-not $Path) {
-        Set-Location ~
-        return
-    }
-
-    if (Test-Path $Path -PathType Container) {
-        Set-Location $Path
-    }
-    else {
-        # if you use zoxide (z) in Windows, call it here
-        z $Path
-        if ($?) {
-            Write-Host "`u{f17a9} $(Get-Location)" -ForegroundColor Cyan
+$functionsDir = Join-Path $PSScriptRoot 'fns'
+Write-Host "Loading function scripts from $functionsDir" -ForegroundColor DarkGray
+if (Test-Path $functionsDir) {
+    Get-ChildItem -Path $functionsDir -Filter '*.ps1' -File |
+        Sort-Object Name |
+        ForEach-Object {
+            . $_.FullName
+            Write-Host "Loaded function script: $($_.Name)" -ForegroundColor DarkGray
         }
-        else {
-            Write-Host "Error: Directory not found" -ForegroundColor Red
-        }
-    }
 }
 
-# Open files like xdg-open
-function open {
-    param([string[]]$Paths)
-    foreach ($p in $Paths) {
-        Start-Process $p
-    }
+$initScript = Join-Path $PSScriptRoot 'init.ps1'
+Write-Host "Loading shell init from $initScript" -ForegroundColor DarkGray
+if (Test-Path $initScript) {
+    . $initScript
+    Write-Host "Shell init loaded (starship, zoxide)" -ForegroundColor DarkGray
 }
-
-# Directories, need to prefix with _ as just dots are not allowed in PowerShell
-function _.. { Set-Location .. }
-function _... { Set-Location ../.. }
-function _.... { Set-Location ../../.. }
-
-# Tools
-Set-Alias g git
-Set-Alias r rails
-Set-Alias j java
-Set-Alias d docker
-
-function n {
-    if ($Args.Count -eq 0) {
-        nvim .
-    } else {
-        nvim @Args
-    }
-}
-
-# Git
-function gcm { git commit -m "$Args" }
-function gcam { git commit -a -m "$Args" }
-function gcad { git commit -a --amend @Args }
-
-# see https://github.com/basecamp/omarchy/blob/master/default/bash/init
-Invoke-Expression (&starship init powershell)
-
-Invoke-Expression (& { (zoxide init powershell | Out-String) })
 
 # -----------------------------
 # Optional: Enable predictive history and IntelliSense
@@ -102,3 +33,5 @@ if ($PSVersionTable.PSVersion.Major -ge 7) {
     Set-PSReadLineOption -PredictionSource History
     Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
 }
+
+if (Get-Command git-wt -ErrorAction SilentlyContinue) { Invoke-Expression (& git-wt config shell init powershell | Out-String) }
