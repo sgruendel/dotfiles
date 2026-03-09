@@ -58,7 +58,7 @@ Remove-Item $env:LOCALAPPDATA\nvim\.git -Recurse -Force
 winget install -e koalaman.shellcheck
 
 # install eza Catppuccin theme
-$ezaConfigDir = Join-Path $env:LOCALAPPDATA "eza"
+$ezaConfigDir = Join-Path $env:APPDATA "eza"
 if (-not (Test-Path $ezaConfigDir)) {
     New-Item -ItemType Directory -Path $ezaConfigDir | Out-Null
 }
