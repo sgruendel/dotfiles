@@ -16,6 +16,9 @@ winget install -e JesseDuffield.lazygit
 # https://yazi-rs.github.io/docs/installation/#install-with-winget
 winget install -e sxyazi.yazi jqlang.jq
 
+# https://mise.jdx.dev/getting-started.html#installing-mise-cli
+winget install -e jdx.mise
+
 # https://docs.astral.sh/uv/getting-started/installation/
 winget install -e astral-sh.uv
 
