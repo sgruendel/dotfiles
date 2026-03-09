@@ -69,7 +69,11 @@ sudo ln -sf /opt/nvim-linux-x86_64/bin/nvim /usr/local/bin/
 rm nvim-linux-x86_64.tar.gz
 
 # dependencies, for Rocky Linux see https://docs.rockylinux.org/10/books/nvchad/install_nvim/#__tabbed_1_1
-sudo npm -g install tree-sitter-cli
+curl -LO https://github.com/tree-sitter/tree-sitter/releases/download/v0.26.6/tree-sitter-linux-x64.gz
+gzip -d tree-sitter-linux-x64.gz
+chmod 755 tree-sitter-linux-x64
+sudo chown root:root tree-sitter-linux-x64
+sudo mv tree-sitter-linux-x64 /usr/local/bin/tree-sitter
 
 # LazyVim
 git clone https://github.com/LazyVim/starter ~/.config/nvim
