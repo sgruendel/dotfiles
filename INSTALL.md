@@ -13,6 +13,7 @@ For PowerShell, `cd` to `$HOME\Documents\PowerShell`
 
 ```powershell
 New-Item -ItemType SymbolicLink -Path Microsoft.PowerShell_profile.ps1 -Target $HOME\src\github\dotfiles\PowerShell\Microsoft.PowerShell_profile.ps1
+New-Item -ItemType SymbolicLink -Path omarchy_bash_rc.ps1 -Target $HOME\src\github\dotfiles\PowerShell\omarchy_bash_rc.ps1
 New-Item -ItemType SymbolicLink -Path aliases.ps1 -Target $HOME\src\github\dotfiles\PowerShell\aliases.ps1
 New-Item -ItemType SymbolicLink -Path init.ps1 -Target $HOME\src\github\dotfiles\PowerShell\init.ps1
 New-Item -ItemType SymbolicLink -Path fns -Target $HOME\src\github\dotfiles\PowerShell\fns
