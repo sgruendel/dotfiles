@@ -63,10 +63,10 @@ function open {
     }
 }
 
-# Directories, need to prefix with _ as just dots are not allowed in PowerShell
-function _.. { Set-Location .. }
-function _... { Set-Location ../.. }
-function _.... { Set-Location ../../.. }
+# Directories
+function .. { Set-Location .. }
+function ... { Set-Location ../.. }
+function .... { Set-Location ../../.. }
 
 # Tools
 Set-Alias c copilot
