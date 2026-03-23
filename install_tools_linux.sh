@@ -5,9 +5,11 @@
 
 case $ID in
 ubuntu | debian)
-  # batcat from bat
-  # fdfind from fd-find
   sudo apt-get install -y bat btop fd-find fzf ripgrep zoxide
+  # see https://github.com/sharkdp/bat?tab=readme-ov-file#on-ubuntu-using-apt
+  sudo ln -s /usr/bin/batcat /usr/local/bin/bat
+  # see https://github.com/sharkdp/fd?tab=readme-ov-file#on-ubuntu
+  sudo ln -s /usr/bin/fdfind /usr/local/bin/fd
   ;;
 rocky)
   sudo dnf install -y bat btop fd-find fzf ripgrep zoxide
