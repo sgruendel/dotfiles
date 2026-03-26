@@ -2,25 +2,25 @@
 # Create a new worktree and branch from within current git directory.
 function ga {
   param(
-    [string]$Branch
+    [string]$branch
   )
 
-  if (-not $Branch) {
+  if (-not $branch) {
     Write-Host "Usage: ga [branch name]"
     return 1
   }
 
   $base = Split-Path -Leaf (Get-Location)
   $parent = Split-Path -Parent (Get-Location)
-  $path = Join-Path $parent "${base}--${Branch}"
+  $wt_path = Join-Path $parent "${base}--${branch}"
 
-  git worktree add -b $Branch $path
+  git worktree add -b $branch $wt_path
   if ($LASTEXITCODE -ne 0) {
     return 1
   }
 
-  mise trust $path
-  Set-Location $path
+  mise trust $wt_path
+  Set-Location $wt_path
 }
 
 # Remove worktree and branch from within active worktree directory.
