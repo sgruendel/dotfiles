@@ -69,7 +69,7 @@ function ... { Set-Location ../.. }
 function .... { Set-Location ../../.. }
 
 # Tools
-Set-Alias c copilot
+Set-Alias c opencode
 Set-Alias d docker
 Set-Alias j java
 Set-Alias r rails
