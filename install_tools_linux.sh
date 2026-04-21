@@ -5,14 +5,14 @@
 
 case $ID in
 ubuntu | debian)
-  sudo apt-get install -y bat btop fd-find fzf ripgrep zoxide
+  sudo apt-get install -y 7zip bat btop fd-find fzf ripgrep zoxide
   # see https://github.com/sharkdp/bat?tab=readme-ov-file#on-ubuntu-using-apt
   sudo ln -s /usr/bin/batcat /usr/local/bin/bat
   # see https://github.com/sharkdp/fd?tab=readme-ov-file#on-ubuntu
   sudo ln -s /usr/bin/fdfind /usr/local/bin/fd
   ;;
 rocky)
-  sudo dnf install -y bat btop fd-find fzf ripgrep zoxide
+  sudo dnf install -y p7zip bat btop fd-find fzf ripgrep zoxide
   ;;
 esac
 
@@ -53,6 +53,12 @@ curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/downl
 tar xf lazygit.tar.gz lazygit
 sudo install lazygit -D -t /usr/local/bin/
 rm lazygit lazygit.tar.gz
+
+# yazi, see https://yazi-rs.github.io/docs/installation#debian
+curl -LO https://github.com/sxyazi/yazi/releases/latest/download/yazi-x86_64-unknown-linux-gnu.zip
+unzip yazi-x86_64-unknown-linux-gnu.zip
+sudo mv yazi-x86_64-unknown-linux-gnu/{ya,yazi} /usr/local/bin
+rm -r yazi-x86_64-unknown-linux-gnu.zip yazi-x86_64-unknown-linux-gnu/
 
 # mise, see https://mise.jdx.dev/installing-mise.html
 curl https://mise.run | sh
