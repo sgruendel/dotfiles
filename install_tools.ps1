@@ -2,6 +2,9 @@
 winget install -e Microsoft.Powershell
 
 # install tools
+winget install -e Git.Git
+winget install -e 7zip.7zip
+winget install -e jqlang.jq
 winget install -e sharkdp.bat
 winget install -e eza-community.eza
 winget install -e sharkdp.fd
@@ -14,7 +17,9 @@ winget install -e JesseDuffield.Lazydocker
 winget install -e JesseDuffield.lazygit
 
 # https://yazi-rs.github.io/docs/installation/#install-with-winget
-winget install -e sxyazi.yazi jqlang.jq
+winget install -e sxyazi.yazi
+[System.Environment]::SetEnvironmentVariable('YAZI_FILE_ONE', 'C:\Program Files\Git\usr\bin\file.exe', [System.EnvironmentVariableTarget]::User)
+$env:YAZI_FILE_ONE = [System.Environment]::GetEnvironmentVariable('YAZI_FILE_ONE', [System.EnvironmentVariableTarget]::User)
 
 # https://mise.jdx.dev/getting-started.html#installing-mise-cli
 winget install -e jdx.mise
