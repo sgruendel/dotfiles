@@ -13,7 +13,7 @@
 ...
 ---
 - Key: [Screen Capture, pressed]
-- Execute: omarchy-cmd-screenshot
+- Execute: omarchy-capture-screenshot
 ...
 ---
 - Key: [Mute Microphone, pressed]
@@ -41,7 +41,7 @@
 ...
 ---
 - Key: [Screen Capture/Print Screen, pressed]
-- Execute: omarchy-cmd-screenshot
+- Execute: omarchy-capture-screenshot
 ...
 ---
 - Key: [App Contextual Menu/Right Click, pressed]
