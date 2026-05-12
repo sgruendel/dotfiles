@@ -29,6 +29,28 @@ function eff {
     nvim @($selection)
 }
 
+function sff {
+    param(
+        [string]$Destination
+    )
+
+    if (-not $Destination) {
+        Write-Host "Usage: sff <destination> (e.g. sff host:/tmp/)"
+        return
+    }
+
+    $file = Get-ChildItem -File -Recurse -Force |
+        Sort-Object LastWriteTime -Descending |
+        ForEach-Object FullName |
+        ff
+
+    if (-not $file) {
+        return
+    }
+
+    scp $file $Destination
+}
+
 Remove-Item Alias:cd -ErrorAction SilentlyContinue
 function cd {
     param(
