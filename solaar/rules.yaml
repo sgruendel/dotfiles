@@ -17,7 +17,7 @@
 ...
 ---
 - Key: [Mute Microphone, pressed]
-- Execute: mute-jabra
+- Execute: omarchy-audio-input-mute
 ...
 ---
 - Key: [MultiPlatform Search, pressed]
