@@ -36,6 +36,14 @@
 - Execute: [omarchy-swayosd-client, --output-volume, raise]
 ...
 ---
+- Key: [Backlight Down, pressed]
+- Execute: [omarchy-brightness-keyboard, down]
+...
+---
+- Key: [Backlight Up, pressed]
+- Execute: [omarchy-brightness-keyboard, up]
+...
+---
 - Key: [Calculator, pressed]
 - Execute: [walker, -m, calc]
 ...
