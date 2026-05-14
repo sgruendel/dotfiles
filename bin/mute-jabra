@@ -1,2 +1,11 @@
 #!/bin/sh
-pamixer --source "$(pamixer --list-sources | sed -n '/Jabra SPEAK 510 Mono/ s/^\([0-9]\+\).*/\1/p')" -t
+JABRA_SOURCE=$(pamixer --list-sources | sed -n '/Jabra SPEAK 510 Mono/ s/^\([0-9]\+\).*/\1/p')
+if [ -z "$JABRA_SOURCE" ]; then
+  echo "Jabra SPEAK 510 Mono source not found"
+  exit 1
+fi
+
+pamixer --source "$JABRA_SOURCE" -t
+MUTED=$(pamixer --source "$JABRA_SOURCE" --get-mute)
+MESSAGE="Microphone $(if [ "$MUTED" = "true" ]; then echo "muted"; else echo "unmuted"; fi)"
+swayosd-client --monitor "$(hyprctl monitors -j | jq -r '.[] | select(.focused).name')" --custom-icon audio-input-microphone --custom-message "$MESSAGE"
