@@ -25,15 +25,15 @@
 ...
 ---
 - Key: [Mute Sound, pressed]
-- Execute: [pamixer, -t]
+- Execute: [omarchy-swayosd-client, --output-volume, mute-toggle]
 ...
 ---
 - Key: [Volume Down, pressed]
-- Execute: [pamixer, -d, "5"]
+- Execute: [omarchy-swayosd-client, --output-volume, lower]
 ...
 ---
 - Key: [Volume Up, pressed]
-- Execute: [pamixer, -i, "5"]
+- Execute: [omarchy-swayosd-client, --output-volume, raise]
 ...
 ---
 - Key: [Calculator, pressed]
