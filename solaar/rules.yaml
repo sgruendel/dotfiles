@@ -49,5 +49,5 @@
 ...
 ---
 - Key: [Screen Lock, pressed]
-- Execute: omarchy-lock-screen
+- Execute: omarchy-system-lock
 ...
