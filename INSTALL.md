@@ -2,14 +2,39 @@
 
 ## Linux
 
+### Bootstrap setup
+
+```bash
+cd
+mkdir Projects
+cd Projects
+git clone git@github.com:sgruendel/dotfiles.git
+cd dotfiles
+git config user.name "Stefan Gründel"
+git config user.email xxx@gmail.com
+cd ..
+mkdir github
+cd github
+git clone git@github.com:basecamp/omarchy.git -b master
+cd omarchy
+git config user.name "Stefan Gründel"
+git config user.email xxx@gmail.com
+cd ~/.local/share/
+ln -s ~/Projects/github/omarchy omarchy
+```
+
+### Configuration
+
 For tmux, `cd` to `$HOME`
 
 ```bash
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-ln -sf ~/src/github/dotfiles/tmux/tmux.conf .config/tmux/tmux.conf
-ln -sf ~/src/github/dotfiles/tmux/gitmux.conf .gitmux.conf
+ln -sf ~/Projects/dotfiles/tmux/tmux.conf .config/tmux/tmux.conf
+ln -sf ~/Projects/dotfiles/tmux/gitmux.conf .gitmux.conf
 git clone -b v2.3.0 https://github.com/catppuccin/tmux.git ~/.config/tmux/plugins/catppuccin/tmux
 ```
+
+You also need to install [gitmux](https://github.com/arl/gitmux#installing).
 
 ## Windows
 
