@@ -1,0 +1,47 @@
+# vi: ft=bash
+
+# Creates a new Omarchy migration named after the current unix timestamp.
+omarchyDevAddMigrationNow() {
+  cd ~/src/github/omarchy || exit
+  local timestamp=$(date +%s)
+  local migration_file="migrations/${timestamp}.sh"
+  touch "$migration_file"
+  nvim "$migration_file"
+  echo "$migration_file"
+}
+
+# see https://soban.pl/dynamic-tmux-window-titles-with-ssh-and-hostname/
+# Override the default ssh command to dynamically rename the Tmux window
+ssh() {
+  if [ -n "$TMUX" ]; then
+    # Loop through arguments to find the target host (first non-flag argument)
+    for arg in "$@"; do
+      if [[ "$arg" != -* ]]; then
+        if [[ "$arg" == *@* ]]; then
+          host="${arg#*@}" # extract host from user@host
+        else
+          host="$arg"
+        fi
+        break
+      fi
+    done
+
+    # Strip any trailing junk or whitespace
+    host="$(echo "$host" | cut -d' ' -f1)"
+
+    # Save the original window name so we can restore it after logout
+    original_window_name="$(tmux display-message -p '#W')"
+
+    # Rename the Tmux window to the SSH target
+    [ -n "$host" ] && tmux rename-window "$host 󰣀"
+
+    # Run the actual SSH command
+    command ssh "$@"
+
+    # Restore the original window name after logout
+    tmux rename-window "$original_window_name"
+  else
+    # Not in Tmux — just run ssh normally
+    command ssh "$@"
+  fi
+}
