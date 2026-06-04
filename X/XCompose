@@ -1,0 +1,10 @@
+# Run omarchy-restart-xcompose to apply changes
+
+# Include fast emoji access
+include "%H/.local/share/omarchy/default/xcompose"
+
+# Identification
+<Multi_key> <space> <n> : "Stefan Gründel"
+<Multi_key> <space> <e> : "530272+sgruendel@users.noreply.github.com"
+<Multi_key> <space> <p> : "+49 1768 ***"
+<Multi_key> <space> <m> : "Mit freundlichen Grüßen"
