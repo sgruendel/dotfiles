@@ -67,6 +67,10 @@ done
 o=${BASE}git/config
 check_symlink_and_exists "$o"
 
+# .X/XCompose is symlinked to ~/.XCompose
+o=~/.XCompose
+check_symlink_and_exists "$o"
+
 # ./ideavim/ideavimrc is symlinked to ~/.ideavimrc
 o=~/.ideavimrc
 check_symlink_and_exists "$o"
