@@ -43,9 +43,6 @@ if ! command_exists eza; then
   curl https://raw.githubusercontent.com/catppuccin/eza/main/themes/mocha/catppuccin-mocha-mauve.yml -o ~/.config/eza/theme.yml
 fi
 
-# starship, see https://starship.rs/#quick-install
-curl -sS https://starship.rs/install.sh | sh
-
 # lazydocker, see https://github.com/jesseduffield/lazydocker#installation
 # always install latest version, as it does not get updated via apt-get
 if command -v docker &>/dev/null; then
@@ -75,7 +72,6 @@ if ! command_exists mise; then
   # activate mise, see https://mise.jdx.dev/getting-started.html#activate-mise
   if ! grep -q 'mise activate bash' ~/.bashrc; then
     echo 'eval "$(mise activate bash)"' >>~/.bashrc
-    eval "$(mise activate bash)"
   fi
 else
   # update mise to latest version, use sudo if not writable by current user
@@ -91,7 +87,23 @@ mise install node@lts
 mise use -g node@lts
 
 # install uv, see https://docs.astral.sh/uv/getting-started/installation/
-curl -LsSf https://astral.sh/uv/install.sh | env UV_INSTALL_DIR=~/.local/bin/ UV_NO_MODIFY_PATH=1 sh
+if ! command_exists uv; then
+  curl -LsSf https://astral.sh/uv/install.sh | env UV_INSTALL_DIR=~/.local/bin/ UV_NO_MODIFY_PATH=1 sh
+else
+  uv self update
+fi
+
+# starship, see https://starship.rs/#quick-install
+# always install latest version, as it does not get updated via apt-get
+curl -sS https://starship.rs/install.sh | sh
+if ! grep -q 'starship init bash' ~/.bashrc; then
+  echo 'eval "$(starship init bash)"' >>~/.bashrc
+fi
+
+# activate zoxide, see https://github.com/ajeetdsouza/zoxide#installation
+if ! grep -q 'zoxide init bash' ~/.bashrc; then
+  echo 'eval "$(zoxide init bash)"' >>~/.bashrc
+fi
 
 # neovim, see https://neovim.io/doc2/install/#install-from-download
 if ! command_exists nvim; then
