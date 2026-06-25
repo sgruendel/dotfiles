@@ -1,5 +1,9 @@
 #!/bin/bash
 
+command_exists() {
+  command -v "$1" >/dev/null 2>&1
+}
+
 # identify OS
 . /etc/os-release
 
@@ -17,30 +21,33 @@ rocky)
 esac
 
 # eza
-case $ID in
-ubuntu | debian)
-  # see https://github.com/eza-community/eza/blob/main/INSTALL.md#debian-and-ubuntu
-  wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
-  echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
-  sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
-  sudo apt-get update
-  sudo apt-get install eza
-  ;;
-rocky)
-  # see https://github.com/eza-community/eza/blob/main/INSTALL.md#manual-linux
-  wget -c https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-gnu.tar.gz -O - | tar xz
-  sudo chmod +x eza
-  sudo chown root:root eza
-  sudo mv eza /usr/local/bin/eza
-  ;;
-esac
-mkdir -p ~/.config/eza
-curl https://raw.githubusercontent.com/catppuccin/eza/main/themes/mocha/catppuccin-mocha-mauve.yml -o ~/.config/eza/theme.yml
+if ! command_exists eza; then
+  case $ID in
+  ubuntu | debian)
+    # see https://github.com/eza-community/eza/blob/main/INSTALL.md#debian-and-ubuntu
+    wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
+    echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
+    sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
+    sudo apt-get update
+    sudo apt-get install eza
+    ;;
+  rocky)
+    # see https://github.com/eza-community/eza/blob/main/INSTALL.md#manual-linux
+    wget -c https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-gnu.tar.gz -O - | tar xz
+    sudo chmod +x eza
+    sudo chown root:root eza
+    sudo mv eza /usr/local/bin/eza
+    ;;
+  esac
+  mkdir -p ~/.config/eza
+  curl https://raw.githubusercontent.com/catppuccin/eza/main/themes/mocha/catppuccin-mocha-mauve.yml -o ~/.config/eza/theme.yml
+fi
 
 # starship, see https://starship.rs/#quick-install
 curl -sS https://starship.rs/install.sh | sh
 
 # lazydocker, see https://github.com/jesseduffield/lazydocker#installation
+# always install latest version, as it does not get updated via apt-get
 if command -v docker &>/dev/null; then
   curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
 fi
@@ -48,6 +55,7 @@ fi
 # TODO debian >=13 / ubuntu >= 25.10: install from apt repo
 
 # lazygit, see https://github.com/jesseduffield/lazygit?tab=readme-ov-file#debian-and-ubuntu
+# always install latest version, as it does not get updated via apt-get
 LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
 curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
 tar xf lazygit.tar.gz lazygit
@@ -55,44 +63,62 @@ sudo install lazygit -D -t /usr/local/bin/
 rm lazygit lazygit.tar.gz
 
 # yazi, see https://yazi-rs.github.io/docs/installation#debian
+# always install latest version, as it does not get updated via apt-get
 curl -LO https://github.com/sxyazi/yazi/releases/latest/download/yazi-x86_64-unknown-linux-gnu.zip
 unzip yazi-x86_64-unknown-linux-gnu.zip
 sudo mv yazi-x86_64-unknown-linux-gnu/{ya,yazi} /usr/local/bin
 rm -r yazi-x86_64-unknown-linux-gnu.zip yazi-x86_64-unknown-linux-gnu/
 
 # mise, see https://mise.jdx.dev/installing-mise.html
-curl https://mise.run | sh
-
-# install Node.js LTS via mise
+if ! command_exists mise; then
+  sudo env MISE_INSTALL_PATH=/usr/local/bin/mise sh -c "$(curl -fsSL https://mise.run)"
+  # activate mise, see https://mise.jdx.dev/getting-started.html#activate-mise
+  if ! grep -q 'mise activate bash' ~/.bashrc; then
+    echo 'eval "$(mise activate bash)"' >>~/.bashrc
+    eval "$(mise activate bash)"
+  fi
+else
+  # update mise to latest version, use sudo if not writable by current user
+  if [ -w "$(command -v mise)" ]; then
+    mise self-update
+  else
+    sudo mise self-update
+  fi
+fi
+# install latest Node.js LTS
+mise install node@lts
+# set as global default
 mise use -g node@lts
 
 # install uv, see https://docs.astral.sh/uv/getting-started/installation/
 curl -LsSf https://astral.sh/uv/install.sh | env UV_INSTALL_DIR=~/.local/bin/ UV_NO_MODIFY_PATH=1 sh
 
 # neovim, see https://neovim.io/doc2/install/#install-from-download
-curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
-sudo rm -rf /opt/nvim-linux-x86_64
-sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
-sudo ln -sf /opt/nvim-linux-x86_64/bin/nvim /usr/local/bin/
-rm nvim-linux-x86_64.tar.gz
+if ! command_exists nvim; then
+  curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+  sudo rm -rf /opt/nvim-linux-x86_64
+  sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
+  sudo ln -sf /opt/nvim-linux-x86_64/bin/nvim /usr/local/bin/
+  rm nvim-linux-x86_64.tar.gz
 
-# dependencies, for Rocky Linux see https://docs.rockylinux.org/10/books/nvchad/install_nvim/#__tabbed_1_1
-curl -LO https://github.com/tree-sitter/tree-sitter/releases/download/v0.26.6/tree-sitter-linux-x64.gz
-gzip -d tree-sitter-linux-x64.gz
-chmod 755 tree-sitter-linux-x64
-sudo chown root:root tree-sitter-linux-x64
-sudo mv tree-sitter-linux-x64 /usr/local/bin/tree-sitter
+  # dependencies, for Rocky Linux see https://docs.rockylinux.org/10/books/nvchad/install_nvim/#__tabbed_1_1
+  curl -LO https://github.com/tree-sitter/tree-sitter/releases/download/v0.26.6/tree-sitter-linux-x64.gz
+  gzip -d tree-sitter-linux-x64.gz
+  chmod 755 tree-sitter-linux-x64
+  sudo chown root:root tree-sitter-linux-x64
+  sudo mv tree-sitter-linux-x64 /usr/local/bin/tree-sitter
 
-# LazyVim
-git clone https://github.com/LazyVim/starter ~/.config/nvim
-rm -rf ~/.config/nvim/.git
+  # LazyVim
+  git clone https://github.com/LazyVim/starter ~/.config/nvim
+  rm -rf ~/.config/nvim/.git
 
-# https://github.com/koalaman/shellcheck
-case $ID in
-ubuntu | debian)
-  sudo apt-get install -y shellcheck
-  ;;
-rocky)
-  sudo dnf install -y shellcheck
-  ;;
-esac
+  # https://github.com/koalaman/shellcheck
+  case $ID in
+  ubuntu | debian)
+    sudo apt-get install -y shellcheck
+    ;;
+  rocky)
+    sudo dnf install -y shellcheck
+    ;;
+  esac
+fi
