@@ -135,15 +135,18 @@ map <leader><Space> <Action>(GotoFile)
 map <leader>, <Action>(Switcher)
 map <leader>/ <Action>(FindInPath)
 map <leader>e <Action>(SelectInProjectView)
+map <leader>E <Action>(ActivateProjectToolWindow)
 map <leader>fb <Action>(Switcher)
 map <leader>fB <Action>(Switcher)
 " map <leader>fc TODO find config file
 map <leader>fC <Action>(GotoClass)
 map <leader>fe <Action>(SelectInProjectView)
-map <leader>fE <Action>(SelectInProjectView)
+map <leader>fE <Action>(ActivateProjectToolWindow)
 map <leader>ff <Action>(GotoFile)
 map <leader>fF <Action>(GotoFile)
 map <leader>fr <Action>(RecentFiles)
+map <leader>ft (ActivateTerminalToolWindow)
+map <leader>fT (ActivateTerminalToolWindow)
 
 map <leader>gb <Action>(Annotate)
 map <leader>gd <Action>(Compare.SameVersion)
@@ -157,6 +160,16 @@ map <leader>gL <Action>(ActivateVersionControlToolWindow)
 " https://www.lazyvim.org/keymaps#troublenvim
 map <leader>cs <Action>(FileStructurePopup)
 map <leader>cS <Action>(ActivateStructureToolWindow)
+map <leader>xx <Action>(ActivateProblemsViewToolWindow)
+map <leader>xX <Action>(ActivateProblemsViewToolWindow)
+
+" https://www.lazyvim.org/keymaps#todo-commentsnvim
+map <leader>st <Action>(ActivateTODOToolWindow)
+map <leader>sT <Action>(ActivateTODOToolWindow)
+map <leader>xt <Action>(ActivateTODOToolWindow)
+map <leader>xT <Action>(ActivateTODOToolWindow)
+
+" https://www.lazyvim.org/keymaps#troublenvim
 
 " -------------------------------
 " BUFFERS / TABS
