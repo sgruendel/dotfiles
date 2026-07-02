@@ -3,6 +3,17 @@
 " You can find a list of commands here: https://jb.gg/h38q75
 " Find more examples here: https://jb.gg/share-ideavimrc
 
+" see https://github.com/JetBrains/ideavim/blob/master/CHANGES.md?utm_source=product&utm_medium=link&utm_campaign=IU&utm_content=2026.1#features-10
+" Hints — jump anywhere
+"   Press Ctrl+Shift+\ (Ctrl+Cmd+\ on macOS) and every clickable target gets a short A S D F label
+" NERDTree, everywhere
+"   The NERDTree keys you already know — o, t, s, i, gs, gi — now work in any tree, not just the Project tool window.
+" Hop between tool windows
+"   <C-W>h/j/k/l moves focus directionally across tool windows and the editor
+set VimEverywhere
+" see https://github.com/JetBrains/ideavim/blob/master/CHANGES.md?utm_source=product&utm_medium=link&utm_campaign=IU&utm_content=2026.1#features-2
+set inccommand=nosplit
+
 " see https://blog.sebastian-daschner.com/entries/my-favorite-ideavim-features
 " see https://www.reddit.com/r/vim/comments/1bbkyds/comment/kucg0nj/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
 " no audio bells, only visual "
