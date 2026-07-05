@@ -2,11 +2,15 @@
   "workbench.colorTheme": "Catppuccin Mocha",
   "workbench.iconTheme": "catppuccin-mocha",
   "github.copilot.nextEditSuggestions.enabled": true,
+  "[njk]": {
+    "editor.defaultFormatter": "eseom.nunjucks-template",
+  },
   "[powershell]": {
     "debug.saveBeforeStart": "nonUntitledEditorsInActiveGroup",
     "editor.semanticHighlighting.enabled": false,
     "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?",
   },
+  "html.format.wrapLineLength": 80,
   "tailwindCSS.includeLanguages": {
     "jte": "html",
   },
