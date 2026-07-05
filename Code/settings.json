@@ -22,6 +22,7 @@
   "files.autoSave": "onWindowChange",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
+  "gopls": { "ui.semanticTokens": true },
   "vim.leader": "<space>",
   "vim.hlsearch": true,
   "vim.highlightedyank.enable": true,
