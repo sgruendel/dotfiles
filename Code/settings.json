@@ -52,6 +52,10 @@
   // my stuff based on LazyVim keymaps
   "vim.normalModeKeyBindingsNonRecursive": [
     {
+      "before": ["<leader>", "%"],
+      "commands": ["editor.emmet.action.matchTag"],
+    },
+    {
       "before": ["<leader>", "c", "a"],
       "commands": ["editor.action.codeAction"],
     },
