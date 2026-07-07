@@ -91,6 +91,10 @@ endfunction
 " Use space as leader
 let mapleader=" "
 
+" replicate some hunk diff mappings
+map [ <Action>(PreviousDiff)
+map ] <Action>(NextDiff)
+
 " my stuff based on LazyVim keymaps
 map <leader>a <Action>(GotoAction)
 map <leader>% <Action>(EditorMatchBrace)
