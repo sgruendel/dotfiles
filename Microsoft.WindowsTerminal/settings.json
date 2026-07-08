@@ -4,6 +4,7 @@
     "actions": 
     [
         {
+            // see https://github.com/anomalyco/opencode/issues/1505#issuecomment-3676028097
             "command": 
             {
                 "action": "sendInput",
