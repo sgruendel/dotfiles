@@ -2,20 +2,19 @@
   "workbench.colorTheme": "Catppuccin Mocha",
   "workbench.iconTheme": "catppuccin-mocha",
   "github.copilot.nextEditSuggestions.enabled": true,
-  "[njk]": {
-    "editor.defaultFormatter": "eseom.nunjucks-template",
-  },
-  "[powershell]": {
-    "debug.saveBeforeStart": "nonUntitledEditorsInActiveGroup",
-    "editor.semanticHighlighting.enabled": false,
-    "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?",
-  },
   "editor.rulers": [
     {
       "column": 120,
       "color": "#45556c",
     },
   ],
+  "gopls": {
+    "ui.completion.usePlaceholders": true,
+    "ui.semanticTokens": true,
+  },
+  "[go]": {
+    "editor.defaultFormatter": "golang.go",
+  },
   "html.format.wrapLineLength": 80,
   "[html]": {
     "editor.rulers": [
@@ -28,6 +27,15 @@
         "color": "#45556c",
       },
     ],
+  },
+  "[njk]": {
+    "editor.defaultFormatter": "eseom.nunjucks-template",
+  },
+  "[powershell]": {
+    "editor.defaultFormatter": "ms-vscode.powershell",
+    //"debug.saveBeforeStart": "nonUntitledEditorsInActiveGroup",
+    //"editor.semanticHighlighting.enabled": false,
+    //"editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?",
   },
   "tailwindCSS.includeLanguages": {
     "jte": "html",
@@ -44,7 +52,6 @@
   "files.autoSave": "onWindowChange",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
-  "gopls": { "ui.semanticTokens": true },
   "vim.leader": "<space>",
   "vim.hlsearch": true,
   "vim.highlightedyank.enable": true,
