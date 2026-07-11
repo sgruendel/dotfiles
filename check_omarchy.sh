@@ -30,6 +30,11 @@ for c in alacritty/*; do
   check_symlink_and_exists "$o"
 done
 
+for c in herdr/*; do
+  o=${BASE}herdr/${c#*/}
+  check_symlink_and_exists "$o"
+done
+
 for c in lazygit/*; do
   o=${BASE}lazygit/${c#*/}
   check_symlink_and_exists "$o"
