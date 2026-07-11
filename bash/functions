@@ -11,37 +11,328 @@ omarchyDevAddMigrationNow() {
 }
 
 # see https://soban.pl/dynamic-tmux-window-titles-with-ssh-and-hostname/
-# Override the default ssh command to dynamically rename the Tmux window
+# Override ssh to temporarily rename the current Tmux window
+# or Herdr tab while the SSH session is active.
 ssh() {
-  if [ -n "$TMUX" ]; then
-    # Loop through arguments to find the target host (first non-flag argument)
-    for arg in "$@"; do
-      if [[ "$arg" != -* ]]; then
-        if [[ "$arg" == *@* ]]; then
-          host="${arg#*@}" # extract host from user@host
-        else
-          host="$arg"
-        fi
-        break
+  local host=""
+  local arg
+  local ssh_status
+  local original_name=""
+
+  # Find the SSH target: first non-option argument.
+  for arg in "$@"; do
+    if [[ $arg != -* ]]; then
+      if [[ $arg == *@* ]]; then
+        host="${arg#*@}"
+      else
+        host="$arg"
       fi
-    done
+      break
+    fi
+  done
 
-    # Strip any trailing junk or whitespace
-    host="$(echo "$host" | cut -d' ' -f1)"
+  # Strip trailing whitespace or command fragments.
+  host="${host%%[[:space:]]*}"
 
-    # Save the original window name so we can restore it after logout
-    original_window_name="$(tmux display-message -p '#W')"
+  if [[ -n ${TMUX:-} ]]; then
+    original_name="$(tmux display-message -p '#W')"
 
-    # Rename the Tmux window to the SSH target
-    [ -n "$host" ] && tmux rename-window "$host 󰣀"
+    if [[ -n $host ]]; then
+      tmux rename-window "$host 󰣀"
+    fi
 
-    # Run the actual SSH command
     command ssh "$@"
+    ssh_status=$?
 
-    # Restore the original window name after logout
-    tmux rename-window "$original_window_name"
+    if [[ -n $original_name ]]; then
+      tmux rename-window "$original_name"
+    fi
+
+  elif [[ ${HERDR_ENV:-} == 1 && -n ${HERDR_TAB_ID:-} ]]; then
+    original_name="$(
+      herdr tab get "$HERDR_TAB_ID" |
+        jq -er '[.. | objects | .label? // empty][0]' 2>/dev/null
+    )"
+
+    if [[ -n $host ]]; then
+      herdr tab rename "$HERDR_TAB_ID" "$host 󰣀" >/dev/null
+    fi
+
+    command ssh "$@"
+    ssh_status=$?
+
+    if [[ -n $original_name ]]; then
+      herdr tab rename "$HERDR_TAB_ID" "$original_name" >/dev/null
+    fi
+
   else
-    # Not in Tmux — just run ssh normally
     command ssh "$@"
+    ssh_status=$?
+  fi
+
+  return "$ssh_status"
+}
+
+# -------------------------------------------------------------------
+# Shared Herdr helpers
+# -------------------------------------------------------------------
+
+_herdr_require() {
+  if [[ ${HERDR_ENV:-} != 1 ||
+    -z ${HERDR_PANE_ID:-} ||
+    -z ${HERDR_TAB_ID:-} ||
+    -z ${HERDR_WORKSPACE_ID:-} ]]; then
+    echo "This command must be run inside Herdr." >&2
+    return 1
+  fi
+
+  if ! command -v herdr >/dev/null 2>&1; then
+    echo "herdr is not available in PATH." >&2
+    return 1
+  fi
+
+  if ! command -v jq >/dev/null 2>&1; then
+    echo "This command requires jq." >&2
+    return 1
+  fi
+}
+
+# Extract the first pane_id found in a Herdr JSON response.
+_herdr_pane_id() {
+  jq -er '[.. | objects | .pane_id? // empty][0]'
+}
+
+# Extract the current tab index from the Herdr tab label.
+_herdr_tab_index() {
+  herdr tab get "$HERDR_TAB_ID" |
+    jq -er '
+      .result.tab.label
+      | capture("^(?<index>[0-9]+)(?::.*)?$")
+      | .index
+    '
+}
+
+# Split a pane and print the ID of the newly created pane.
+#
+# Usage:
+#   _herdr_split <pane_id> <right|down> <ratio> <cwd>
+_herdr_split() {
+  local target_pane="$1"
+  local direction="$2"
+  local ratio="$3"
+  local cwd="$4"
+  local response
+
+  response=$(
+    herdr pane split "$target_pane" \
+      --direction "$direction" \
+      --ratio "$ratio" \
+      --cwd "$cwd" \
+      --no-focus
+  ) || return 1
+
+  _herdr_pane_id <<<"$response"
+}
+
+# Build a safely shell-quoted hdl invocation.
+#
+# Usage:
+#   _hdl_command <ai> [<second_ai>]
+_hdl_command() {
+  local ai="$1"
+  local ai2="${2:-}"
+  local quoted_ai quoted_ai2
+
+  printf -v quoted_ai '%q' "$ai"
+
+  if [[ -n $ai2 ]]; then
+    printf -v quoted_ai2 '%q' "$ai2"
+    printf 'hdl %s %s' "$quoted_ai" "$quoted_ai2"
+  else
+    printf 'hdl %s' "$quoted_ai"
+  fi
+}
+
+# Create a Herdr Dev Layout with editor, ai, and terminal
+# Usage: hdl <c|cx|codex|other_ai> [<second_ai>]
+hdl() {
+  if [[ -z ${1:-} ]]; then
+    echo "Usage: hdl <c|cx|codex|other_ai> [<second_ai>]"
+    return 1
+  fi
+
+  _herdr_require || return 1
+
+  local ai="$1"
+  local ai2="${2:-}"
+  local current_dir="$PWD"
+  local editor_pane="$HERDR_PANE_ID"
+  local ai_pane ai2_pane
+
+  # Name the current tab after the project directory.
+  herdr tab rename \
+    "$HERDR_TAB_ID" \
+    "$(basename "$current_dir")" >/dev/null ||
+    return 1
+
+  # Bottom shell: 15% of the total height.
+  #
+  # The new pane ID is deliberately discarded because nothing else in
+  # this function needs to address that pane.
+  herdr pane split "$editor_pane" \
+    --direction down \
+    --ratio 0.85 \
+    --cwd "$current_dir" \
+    --no-focus >/dev/null ||
+    return 1
+
+  # AI pane on the right: 30% of the upper section.
+  ai_pane=$(
+    _herdr_split "$editor_pane" right 0.70 "$current_dir"
+  ) || return 1
+
+  # Optionally split the AI area into two panes.
+  if [[ -n $ai2 ]]; then
+    ai2_pane=$(
+      _herdr_split "$ai_pane" down 0.50 "$current_dir"
+    ) || return 1
+
+    herdr pane run "$ai2_pane" "$ai2" >/dev/null ||
+      return 1
+  fi
+
+  herdr pane run "$ai_pane" "$ai" >/dev/null ||
+    return 1
+
+  herdr pane run \
+    "$editor_pane" \
+    "${EDITOR:-nvim} ." >/dev/null ||
+    return 1
+
+  # All splits use --no-focus, so the original editor pane stays focused.
+}
+
+# Create multiple hdl windows with one per subdirectory in the current directory
+# Usage: hdlm <c|cx|codex|other_ai> [<second_ai>]
+hdlm() {
+  if [[ -z ${1:-} ]]; then
+    echo "Usage: hdlm <c|cx|codex|other_ai> [<second_ai>]"
+    return 1
+  fi
+
+  _herdr_require || return 1
+
+  local ai="$1"
+  local ai2="${2:-}"
+  local base_dir="$PWD"
+  local first=true
+
+  local dir dirpath
+  local pane_id response
+  local quoted_dir hdl_cmd command
+
+  # tmux session equivalent: rename the current Herdr workspace.
+  herdr workspace rename \
+    "$HERDR_WORKSPACE_ID" \
+    "$(basename "$base_dir" | tr '.:' '--')" >/dev/null ||
+    return 1
+
+  hdl_cmd=$(_hdl_command "$ai" "$ai2") ||
+    return 1
+
+  for dir in "$base_dir"/*/; do
+    [[ -d $dir ]] || continue
+
+    dirpath="${dir%/}"
+    printf -v quoted_dir '%q' "$dirpath"
+
+    if $first; then
+      # Reuse the current tab for the first directory.
+      command="cd -- $quoted_dir && $hdl_cmd"
+
+      herdr pane run \
+        "$HERDR_PANE_ID" \
+        "$command" >/dev/null ||
+        return 1
+
+      first=false
+    else
+      # Create another tab without changing the user's focus.
+      response=$(
+        herdr tab create \
+          --workspace "$HERDR_WORKSPACE_ID" \
+          --cwd "$dirpath" \
+          --label "$(basename "$dirpath")" \
+          --no-focus
+      ) || return 1
+
+      pane_id=$(_herdr_pane_id <<<"$response") || {
+        echo "Could not determine root pane for: $dirpath" >&2
+        return 1
+      }
+
+      herdr pane run \
+        "$pane_id" \
+        "$hdl_cmd" >/dev/null ||
+        return 1
+    fi
+  done
+
+  if $first; then
+    echo "No subdirectories found in: $base_dir"
+    return 1
+  fi
+}
+
+# Usage:
+#   hrt             Rename after the current job, then resume it
+#   hrt my-title    Rename explicitly without resuming a job
+hrt() {
+  if [[ ${HERDR_ENV:-} != 1 || -z ${HERDR_TAB_ID:-} ]]; then
+    echo "hrt must be run inside Herdr." >&2
+    return 1
+  fi
+
+  local title="${*:-}"
+  local pid
+  local tab_index
+  local resume_job=false
+
+  if [[ -z $title ]]; then
+    pid="$(jobs -p %+ 2>/dev/null)"
+
+    if [[ -z $pid ]]; then
+      echo "No current background or suspended job found." >&2
+      return 1
+    fi
+
+    title="$(
+      ps -o comm= -p "$pid" 2>/dev/null |
+        sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//'
+    )"
+
+    resume_job=true
+  fi
+
+  if [[ -z $title ]]; then
+    echo "Could not determine a tab title." >&2
+    return 1
+  fi
+
+  tab_index="$(_herdr_tab_index)" || {
+    echo "Could not determine the visible Herdr tab index." >&2
+    return 1
+  }
+
+  # Avoid prefixes such as 3:3:nvim when an existing label is reused.
+  title="$(sed -E 's/^[0-9]+://' <<<"$title")"
+
+  herdr tab rename \
+    "$HERDR_TAB_ID" \
+    "${tab_index}:${title}" >/dev/null ||
+    return 1
+
+  if $resume_job; then
+    fg %+
   fi
 }

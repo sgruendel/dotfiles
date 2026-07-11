@@ -1,0 +1,171 @@
+onboarding = false
+
+# Closest to tmux's normal non-login shell behavior on Linux.
+shell_mode = "non_login"
+
+
+[keys]
+# tmux: set -g prefix C-Space
+prefix = "ctrl+space"
+
+# Herdr supports only one configured prefix, so tmux's prefix2 C-b
+# cannot be reproduced at the same time.
+
+# tmux: prefix q → reload config
+#
+# Herdr has no normal built-in key action for reload-config.
+# A custom shell command is defined further below instead.
+
+# Panes ------------------------------------------------------------
+
+# tmux:
+#   Alt+Enter       → split below
+#   Alt+Shift+Enter → split right
+#   prefix+h        → split below
+#   prefix+v        → split right
+#split_horizontal = ["alt+enter", "prefix+h"]
+split_horizontal = ["prefix+h"]
+
+#split_vertical = ["alt+shift+enter", "prefix+v"]
+split_vertical = ["prefix+v"]
+
+# tmux:
+#   Alt+Escape → kill pane
+#   prefix+x   → kill pane
+#close_pane = ["alt+esc", "prefix+x"]
+close_pane = ["prefix+x"]
+
+# Direct pane navigation.
+focus_pane_left = "ctrl+alt+left"
+focus_pane_right = "ctrl+alt+right"
+focus_pane_up = "ctrl+alt+up"
+focus_pane_down = "ctrl+alt+down"
+
+# Herdr does not currently expose four separately bindable resize actions.
+# Enter resize mode, then resize interactively.
+resize_mode = "ctrl+alt+shift+r"
+
+# Useful tmux-like extras.
+zoom = "prefix+z"
+copy_mode = "prefix+["
+
+# Tabs / tmux windows ----------------------------------------------
+
+# tmux: prefix+c
+new_tab = "prefix+c"
+
+# tmux: prefix+r
+rename_tab = "prefix+r"
+
+# tmux: prefix+k
+close_tab = "prefix+k"
+
+# tmux: Alt+1 through Alt+9
+switch_tab = "alt+1..9"
+
+# tmux: Alt+Left / Alt+Right
+previous_tab = "alt+left"
+next_tab = "alt+right"
+
+# Herdr does not currently expose a direct equivalent of tmux
+# swap-window -t -1 / +1.
+
+# Workspaces / tmux sessions ---------------------------------------
+
+# tmux: prefix+C
+new_workspace = "prefix+shift+c"
+
+# tmux: prefix+R
+rename_workspace = "prefix+shift+r"
+
+# tmux: prefix+K
+close_workspace = "prefix+shift+k"
+
+# tmux:
+#   prefix+P / Alt+Up   → previous session
+#   prefix+N / Alt+Down → next session
+previous_workspace = ["prefix+shift+p", "alt+up"]
+
+next_workspace = ["prefix+shift+n", "alt+down"]
+
+# A picker is generally more useful than tmux's switch-client list.
+workspace_picker = "prefix+w"
+
+# Herdr's equivalent of leaving the server/session running.
+detach = "prefix+d"
+
+# Keep the sidebar available, but hide it during normal use.
+toggle_sidebar = "prefix+b"
+
+# Copy-mode selection and yank already use vi-like v/y bindings.
+# These are built into Herdr's copy mode and do not need separate config.
+
+
+# Reload config ----------------------------------------------------
+
+[[keys.command]]
+key = "prefix+q"
+type = "shell"
+command = "\"$HERDR_BIN_PATH\" server reload-config"
+description = "reload Herdr configuration"
+
+
+[theme]
+# Use the terminal's ANSI palette. This most closely matches your tmux
+# theme, which uses blue, black, brightblack, and default terminal colors.
+#name = "terminal"
+name = "catppuccin"
+
+
+[ui]
+# tmux: set -g mouse on
+mouse_capture = true
+
+# Keep pane separators visible.
+pane_borders = true
+
+# tmux panes share borders rather than having blank gaps.
+#pane_gaps = true
+
+# show detected agent labels in split pane borders 
+show_agent_labels_on_pane_borders = true
+
+# Avoid an extra confirmation where tmux would immediately close something.
+confirm_close = false
+
+# tmux's new-window does not ask for a name.
+prompt_new_tab_name = false
+
+# Reduce the sidebar to zero columns when toggled off.
+sidebar_collapsed_mode = "hidden"
+
+# Keep the tab bar visible, similar to the tmux status-window list.
+hide_tab_bar_when_single_tab = false
+
+# Blue is the nearest match for your tmux active-border/status accent.
+accent = "blue"
+
+# Comparable with tmux focus-events/redraw behavior.
+redraw_on_focus_gained = true
+
+# Similar mouse wheel granularity.
+mouse_scroll_lines = 3
+
+# Keep the host terminal cursor.
+host_cursor = "native"
+
+
+[ui.toast]
+# Your tmux config has no notification popups.
+# delivery = "off"
+delivery = "terminal"
+
+
+[ui.toast.clipboard]
+# tmux copy does not display an application-level toast.
+enabled = false
+
+
+[ui.sound]
+# No equivalent sounds in your tmux setup.
+#enabled = false

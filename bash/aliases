@@ -1,5 +1,7 @@
 # vi: ft=bash
 
+alias h='herdr --session Work'
+
 # see https://github.com/basecamp/omarchy/discussions/5185
 alias omarchys="compgen -c | grep -E '^omarchy-' | sort -u | fzf --style=full --preview 'bat --style=numbers --color=always \$(which {})' --preview-window=right,65%,wrap"
 
