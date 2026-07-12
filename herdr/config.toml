@@ -158,7 +158,7 @@ host_cursor = "native"
 [ui.toast]
 # Your tmux config has no notification popups.
 # delivery = "off"
-delivery = "terminal"
+delivery = "system"
 
 
 [ui.toast.clipboard]
