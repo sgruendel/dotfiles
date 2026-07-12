@@ -59,6 +59,11 @@ for c in tmux/*; do
   check_symlink_and_exists "$o"
 done
 
+for c in voxtype/*; do
+  o=${BASE}voxtype/${c#*/}
+  check_symlink_and_exists "$o"
+done
+
 for c in Code/*; do
   o=${BASE}Code/User/${c#*/}
   check_symlink_and_exists "$o"
