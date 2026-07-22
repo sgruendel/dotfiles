@@ -1,5 +1,6 @@
 onboarding = false
 
+[terminal]
 # Closest to tmux's normal non-login shell behavior on Linux.
 shell_mode = "non_login"
 
