@@ -1,3 +1,5 @@
+# See https://git-scm.com/docs/git-config
+
 [user]
   name = Stefan Gründel
   email = 530272+sgruendel@users.noreply.github.com
@@ -22,32 +24,34 @@
   pager = hunk pager
 
 [column]
-  ui = auto
+	ui = auto 			     # Output in columns when possible
 [branch]
-  sort = -committerdate
+	sort = -committerdate    # Sort branches by most recent commit first
 [tag]
-  sort = version:refname
+	sort = -version:refname  # Sort version numbers as you would expect
 [diff]
-  algorithm = histogram
-  colorMoved = plain
-  mnemonicPrefix = true
+	algorithm = histogram    # Clearer diffs on moved/edited lines
+	colorMoved = plain       # Highlight moved blocks in diffs
+	mnemonicPrefix = true    # More intuitive refs in diff output
   renames = true
+[commit]
+	verbose = true           # Include diff comment in commit message template
 [merge]
   conflictstyle = zdiff3
 [push]
   default = simple
-  autoSetupRemote = true
+	autoSetupRemote = true   # Automatically set upstream branch on push
   followTags = true
 [pull]
-  rebase = true
+	rebase = true 			 # Rebase (instead of merge) on pull
 [fetch]
   prune = true
   pruneTags = true
   all = true
 
 [rerere]
-  enabled = true
-  autoupdate = true
+	enabled = true           # Record and reuse conflict resolutions
+	autoupdate = true        # Apply stored conflict resolutions automatically
 [rebase]
   autoSquash = true
   autoStash = true
