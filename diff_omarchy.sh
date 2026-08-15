@@ -1,20 +1,25 @@
 #!/bin/bash
 # Compare the config files with the ones provided in the Omarchy repo
 
-BASE=~/Projects/github/omarchy/config/
+BASE=~/Projects/github/omarchy-quattro/config/
 
-for c in hypr/*.conf; do
+for c in hypr/*.lua; do
   o=${BASE}hypr/${c#*/}
   diff -u "$c" "$o"
 done
 
-for c in waybar/*; do
-  o=${BASE}waybar/${c#*/}
-  diff -u "$c" "$o"
-done
+# for c in waybar/*; do
+#   o=${BASE}waybar/${c#*/}
+#   diff -u "$c" "$o"
+# done
+#
+# for c in alacritty/*; do
+#   o=${BASE}alacritty/${c#*/}
+#   diff -u "$c" "$o"
+# done
 
-for c in alacritty/*; do
-  o=${BASE}alacritty/${c#*/}
+for c in herdr/*; do
+  o=${BASE}herdr/${c#*/}
   diff -u "$c" "$o"
 done
 
@@ -23,15 +28,15 @@ for c in lazygit/*; do
   diff -u "$c" "$o"
 done
 
-for c in solaar/*; do
-  o=${BASE}solaar/${c#*/}
-  diff -u "$c" "$o"
-done
+# for c in solaar/*; do
+#   o=${BASE}solaar/${c#*/}
+#   diff -u "$c" "$o"
+# done
 
-for c in television/*; do
-  o=${BASE}television/${c#*/}
-  diff -u "$c" "$o"
-done
+# for c in television/*; do
+#   o=${BASE}television/${c#*/}
+#   diff -u "$c" "$o"
+# done
 
 for c in tmux/*; do
   if [ "${c#*/}" = "gitmux.conf" ]; then

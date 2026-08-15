@@ -15,20 +15,20 @@ check_symlink_and_exists() {
   fi
 }
 
-for c in hypr/*.conf; do
+for c in hypr/*.lua; do
   o=${BASE}hypr/${c#*/}
   check_symlink_and_exists "$o"
 done
 
-for c in waybar/*; do
-  o=${BASE}waybar/${c#*/}
-  check_symlink_and_exists "$o"
-done
+# for c in waybar/*; do
+#   o=${BASE}waybar/${c#*/}
+#   check_symlink_and_exists "$o"
+# done
 
-for c in alacritty/*; do
-  o=${BASE}alacritty/${c#*/}
-  check_symlink_and_exists "$o"
-done
+# for c in alacritty/*; do
+#   o=${BASE}alacritty/${c#*/}
+#   check_symlink_and_exists "$o"
+# done
 
 for c in herdr/*; do
   o=${BASE}herdr/${c#*/}
@@ -40,15 +40,15 @@ for c in lazygit/*; do
   check_symlink_and_exists "$o"
 done
 
-for c in solaar/*; do
-  o=${BASE}solaar/${c#*/}
-  check_symlink_and_exists "$o"
-done
+# for c in solaar/*; do
+#   o=${BASE}solaar/${c#*/}
+#   check_symlink_and_exists "$o"
+# done
 
-for c in television/*; do
-  o=${BASE}television/${c#*/}
-  check_symlink_and_exists "$o"
-done
+# for c in television/*; do
+#   o=${BASE}television/${c#*/}
+#   check_symlink_and_exists "$o"
+# done
 
 for c in tmux/*; do
   if [ "${c#*/}" = "gitmux.conf" ]; then
