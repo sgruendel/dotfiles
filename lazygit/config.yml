@@ -2,15 +2,12 @@ os:
   editPreset: nvim
 # use delta, see https://github.com/dandavison/delta
 # does not work on Windows, see https://github.com/jesseduffield/lazygit/issues/2337
-#git:
-#  pagers:
-#    - colorArg: never
-#      pager: delta --dark --paging=never
-#      # pager: ydiff -p cat -s --wrap --width={{columnWidth}}
-#      useConfig: false
-#
-
-# use hunk, see https://github.com/modem-dev/hunk
 git:
   diffRenderers:
-    - command: hunk pager
+    - command: delta --dark --paging=never
+#   # pager: ydiff -p cat -s --wrap --width={{columnWidth}}
+
+# use hunk, see https://github.com/modem-dev/hunk
+# git:
+#   diffRenderers:
+#     - command: hunk pager
