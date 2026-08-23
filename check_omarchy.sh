@@ -92,14 +92,14 @@ for c in Code/*; do
   check_symlink_and_exists "$oa"
 done
 
-# ./gitconfig/config is symlinked to ~/.config/git/config
+# gitconfig/config is symlinked to ~/.config/git/config
 o=${BASE}git/config
 check_symlink_and_exists "$o"
 
-# .X/XCompose is symlinked to ~/.XCompose
+# X/XCompose is symlinked to ~/.XCompose
 o=~/.XCompose
 check_symlink_and_exists "$o"
 
-# ./ideavim/ideavimrc is symlinked to ~/.ideavimrc
+# ideavim/ideavimrc is symlinked to ~/.ideavimrc
 o=~/.ideavimrc
 check_symlink_and_exists "$o"
