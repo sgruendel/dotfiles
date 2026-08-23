@@ -52,23 +52,23 @@
           "id": "omarchy.tray"
         },
         {
-          "id": "akitaonrails.ai-usagebar"
-        },
-        {
           "id": "quickshell.spotify",
           "deviceName": "Omarchy Spotify",
           "idleShutdownMinutes": 15,
           "showMiniPlayer": "On",
+          "shortcutPlayer": "Omarchy Music app",
+          "shortcutHints": "On",
           "showTrackTitle": "On",
           "showArtistName": "Off",
           "scrollBarText": "Off",
           "scrollSpeed": "1",
+          "maxBarTextWidth": "240",
           "audioQuality": "320 kbps",
-          "searchHistory": "[]",
-          "sessionState": "{\"tab\":\"playlists\",\"searchText\":\"\",\"searchType\":\"track\",\"libraryType\":\"tracks\",\"homeType\":\"recent\",\"libraryFilter\":\"\",\"librarySort\":\"default\",\"playlistFilter\":\"\",\"playlistSort\":\"default\",\"detailFilter\":\"\",\"detailSort\":\"default\",\"homeFilter\":\"\",\"discoverFilter\":\"\",\"queueFilter\":\"\",\"artistSearchText\":\"\",\"scrollPositions\":{\"home:recent\":0,\"search:track\":0},\"detailItem\":null,\"selectedPlaylistId\":\"2uKSXXh5T2JePDweduwDII\",\"lastRadioPlaylist\":null}",
-          "shortcutPlayer": "Omarchy Music app",
-          "shortcutHints": "On",
-          "maxBarTextWidth": "240"
+          "searchHistory": "[]"
+        },
+        {
+          "id": "akitaonrails.ai-usagebar",
+          "lastSelectedEntryId": "openai"
         },
         {
           "id": "omarchy.agents"
