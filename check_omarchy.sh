@@ -2,9 +2,14 @@
 # Check that all config files are symlinked from the dotfiles repo
 
 BASE=~/.config/
+README='/README.md$'
 
 check_symlink_and_exists() {
   local path=$1
+
+  if [[ "$path" =~ $README ]]; then
+    return 
+  fi
 
   if ! [ -L "$path" ]; then
     echo "$path is not a symlink"
