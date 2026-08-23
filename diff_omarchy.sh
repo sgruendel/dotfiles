@@ -3,63 +3,65 @@
 
 BASE=~/Projects/github/omarchy-quattro/config/
 
+for c in omarchy/*; do
+  o=${BASE}omarchy/${c#*/}
+  delta "$c" "$o"
+done
+
 for c in hypr/*.lua; do
   o=${BASE}hypr/${c#*/}
-  diff -u "$c" "$o"
+  delta "$c" "$o"
 done
 
 # for c in waybar/*; do
 #   o=${BASE}waybar/${c#*/}
-#   diff -u "$c" "$o"
+#   delta "$c" "$o"
 # done
 #
 # for c in alacritty/*; do
 #   o=${BASE}alacritty/${c#*/}
-#   diff -u "$c" "$o"
+#   delta "$c" "$o"
 # done
 
 for c in herdr/*; do
   o=${BASE}herdr/${c#*/}
-  diff -u "$c" "$o"
+  delta "$c" "$o"
 done
 
 for c in lazygit/*; do
   o=${BASE}lazygit/${c#*/}
-  diff -u "$c" "$o"
+  delta "$c" "$o"
 done
 
 # for c in solaar/*; do
 #   o=${BASE}solaar/${c#*/}
-#   diff -u "$c" "$o"
+#   delta "$c" "$o"
 # done
 
 # for c in television/*; do
 #   o=${BASE}television/${c#*/}
-#   diff -u "$c" "$o"
+#   delta "$c" "$o"
 # done
 
 for c in tmux/*; do
   if [ "${c#*/}" = "gitmux.conf" ]; then
-    o=~/.gitmux.conf
+    continue   # not in Omarchy
   else
     o=${BASE}tmux/${c#*/}
   fi
-  diff -u "$c" "$o"
+  delta "$c" "$o"
 done
 
-for c in Code/*; do
-  o=${BASE}Code/User/${c#*/}
-  diff -u "$c" "$o"
-
-  # Antigravity is VSCode based and uses the same config
-  oa=${BASE}Antigravity/User/${c#*/}
-  diff -u "$c" "$oa"
+for c in voxtype/*; do
+  o=${BASE}voxtype/${c#*/}
+  delta "$c" "$o"
 done
 
-# ./gitconfig/config is symlinked to ~/.config/git/config
+# gitconfig/config is symlinked to ~/.config/git/config
 o=${BASE}git/config
-diff -u "gitconfig/config" "$o"
+delta git/config $o
 
-# ./ideavim/ideavimrc is symlinked to ~/.ideavimrc
-o=~/.ideavimrc
-diff -u "ideavim/ideavimrc" "$o"
+# X/XCompose is symlinked to ~/.XCompose
+o=${BASE}../install/user/xcompose.sh
+delta X/XCompose $o
+
