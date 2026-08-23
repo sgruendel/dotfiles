@@ -15,6 +15,11 @@ check_symlink_and_exists() {
   fi
 }
 
+for c in omarchy/*; do
+  o=${BASE}omarchy/${c#*/}
+  check_symlink_and_exists "$o"
+done
+
 for c in hypr/*.lua; do
   o=${BASE}hypr/${c#*/}
   check_symlink_and_exists "$o"
