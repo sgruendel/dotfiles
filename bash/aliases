@@ -1,6 +1,5 @@
 # vi: ft=bash
 
-alias c='opencode --auto'
 alias h='herdr'
 
 # see https://github.com/basecamp/omarchy/discussions/5185
