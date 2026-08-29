@@ -44,7 +44,9 @@ hl.unbind("SUPER + CTRL + P") -- unbind Power
 o.bind("SUPER + CTRL + P", "Color picker", "pkill hyprpicker || hyprpicker -a")
 
 -- Logitech MX Keys examples:
-hl.unbind("SUPER + SHIFT + S") -- unbind Google Maps
-o.bind("SUPER + SHIFT + S", nil, "omarchy-capture-screenshot")
 o.bind("SUPER + H", nil, "voxtype record toggle")
 o.bind("SUPER + PERIOD", nil, "omarchy-shell shell toggle omarchy.emojis")
+hl.unbind("SUPER + SHIFT + S") -- unbind Google Maps
+o.bind("SUPER + SHIFT + S", nil, "omarchy-capture-screenshot")
+
+o.bind("XF86Search", "Find command", "omarchy-shell shell toggle sgruendel.fzf")
