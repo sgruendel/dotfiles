@@ -43,10 +43,13 @@ o.bind("SUPER + CTRL + M", "Sonos", "omarchy-launch-tui sinuous -d 192.168.7.103
 hl.unbind("SUPER + CTRL + P") -- unbind Power
 o.bind("SUPER + CTRL + P", "Color picker", "pkill hyprpicker || hyprpicker -a")
 
--- Logitech MX Keys examples:
+-- Logitech MX Mechanical Mini:
 o.bind("SUPER + H", nil, "voxtype record toggle")
 o.bind("SUPER + PERIOD", nil, "omarchy-shell shell toggle omarchy.emojis")
 hl.unbind("SUPER + SHIFT + S") -- unbind Google Maps
 o.bind("SUPER + SHIFT + S", nil, "omarchy-capture-screenshot")
-
 o.bind("XF86Search", "Find command", "omarchy-shell shell toggle sgruendel.fzf")
+
+-- Logitech MX Keys:
+o.bind("SUPER + A", nil, "voxtype record toggle")
+o.bind("SUPER + D", nil, "omarchy-shell shell toggle sgruendel.fzf")
