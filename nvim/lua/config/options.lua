@@ -1,5 +1,7 @@
 -- Options are automatically loaded before lazy.nvim startup.
-require("config.remote_clipboard").setup()
+if vim.fn.has("wsl") == 0 then
+  require("config.remote_clipboard").setup()
+end
 
 -- vim.opt.relativenumber = false
 vim.g.autoformat = false
