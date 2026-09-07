@@ -37,7 +37,7 @@ hl.unbind("SUPER + SHIFT + E")
 o.bind("SUPER + SHIFT + E", "Email", { webapp = "https://gmail.com" })
 hl.unbind("SUPER + SHIFT + ALT + E")
 o.bind("SUPER + SHIFT + ALT + E", "Email Work", "omarchy-launch-webapp 'https://outlook.office.com/mail' --user-data-dir='" .. paths.home .. "/.config/chromium-profile/garmin'")
-o.bind("SUPER + SHIFT + ALT + T", "Teams Work", "omarchy-launch-webapp 'https://teams.microsoft.com/v2' --user-data-dir='" .. paths.home .. "/.config/chromium-profile/garmin'")
+o.bind("SUPER + SHIFT + ALT + T", "Teams Work", "omarchy-launch-webapp 'https://teams.cloud.microsoft/' --user-data-dir='" .. paths.home .. "/.config/chromium-profile/garmin'")
 
 o.bind("SUPER + CTRL + M", "Sonos", "omarchy-launch-tui sinuous -d 192.168.7.103,192.168.7.104")
 hl.unbind("SUPER + CTRL + P") -- unbind Power
