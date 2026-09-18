@@ -58,6 +58,10 @@ for c in nvim/lua/config/*; do
   o=${BASE}nvim/${c#*/}
   check_symlink_and_exists "$o"
 done
+for c in nvim/lua/plugins/*; do
+  o=${BASE}nvim/${c#*/}
+  check_symlink_and_exists "$o"
+done
 
 # for c in solaar/*; do
 #   o=${BASE}solaar/${c#*/}
