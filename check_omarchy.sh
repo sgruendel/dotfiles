@@ -107,3 +107,7 @@ check_symlink_and_exists "$o"
 # ideavim/ideavimrc is symlinked to ~/.ideavimrc
 o=~/.ideavimrc
 check_symlink_and_exists "$o"
+
+# bash/inputrc is symlinked to ~/.inputrc
+o=~/.inputrc
+check_symlink_and_exists "$o"
