@@ -1,4 +1,5 @@
 # Source - https://stackoverflow.com/a/48449104
+# see https://deut-erium.github.io/2024/01/28/inputrc.html
 
 set editing-mode vi
 set show-mode-in-prompt on
