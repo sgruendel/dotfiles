@@ -91,5 +91,9 @@
       ]
     }
   },
-  "plugins": []
+  "plugins": [
+    {
+      "id": "sgruendel.fzf"
+    }
+  ]
 }
