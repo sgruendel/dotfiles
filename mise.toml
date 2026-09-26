@@ -1,0 +1,43 @@
+[bootstrap.packages]
+"aur:ai-usagebar-bin" = "latest"
+"aur:gitmux-bin" = "latest"
+
+[bootstrap.repos]
+"~/.tmux/plugins/tpm" = { url = "https://github.com/tmux-plugins/tpm.git" }
+"~/.config/tmux/plugins/catppuccin/tmux" = { url = "https://github.com/catppuccin/tmux.git", ref = "v2.3.0" }
+"~/.config/omarchy/plugins/sgruendel.airq" = { url = "https://github.com/sgruendel/omarchy-airq.git" }
+"~/.config/omarchy/plugins/sgruendel.fzf" = { url = "https://github.com/sgruendel/omarchy-fzf.git" }
+"~/.config/omarchy/plugins/sgruendel.workspaces" = { url = "https://github.com/sgruendel/omarchy-workspaces.git" }
+"~/.config/omarchy/plugins/akitaonrails.ai-usagebar" = { url = "https://github.com/akitaonrails/ai-usagebar.git" }
+"~/.config/omarchy/plugins/quickshell.spotify" = { url = "https://github.com/stappmus/Omarchy-Spotify.git" }
+
+[bootstrap.hooks.pre-dotfiles]
+run = 'bash "{{ config_root }}/bin/backup-dotfiles"'
+
+[dotfiles]
+"~/.XCompose" = { source = "X/XCompose", mode = "symlink" }
+"~/.ideavimrc" = { source = "ideavim/ideavimrc", mode = "symlink" }
+"~/.inputrc" = { source = "bash/inputrc", mode = "symlink" }
+"~/.gitmux.conf" = { source = "tmux/gitmux.conf", mode = "symlink" }
+
+"~/.config/git/config" = { source = "git/config", mode = "symlink" }
+"~/.config/herdr/config.toml" = { source = "herdr/config.toml", mode = "symlink" }
+"~/.config/hypr" = { source = "hypr", mode = "symlink-each", exclude = ["*.conf"] }
+"~/.config/lazygit/config.yml" = { source = "lazygit/config.yml", mode = "symlink" }
+"~/.config/nvim" = { source = "nvim", mode = "symlink-each" }
+"~/.config/omarchy/shell.json" = { source = "omarchy/shell.json", mode = "symlink" }
+"~/.config/tmux/tmux.conf" = { source = "tmux/tmux.conf", mode = "symlink" }
+"~/.config/voxtype/config.toml" = { source = "voxtype/config.toml", mode = "symlink" }
+
+"~/.config/Code/User/settings.json" = { source = "Code/settings.json", mode = "symlink" }
+"~/.config/Code/User/keybindings.json" = { source = "Code/keybindings.json", mode = "symlink" }
+
+[tasks.bootstrap]
+description = "Install global mise tools and authenticate GitHub"
+run = '''
+if ! gh auth status >/dev/null 2>&1; then
+  gh auth login --web --git-protocol https
+fi
+
+gh auth setup-git
+'''

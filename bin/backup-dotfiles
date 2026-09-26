@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+repo_root=${DOTFILES_REPO_ROOT:-$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)}
+home_dir=${DOTFILES_BACKUP_HOME:-$HOME}
+state_home=${DOTFILES_BACKUP_STATE_HOME:-${XDG_STATE_HOME:-$HOME/.local/state}}
+backup_root="$state_home/dotfiles/bootstrap-backups"
+backup_dir=""
+
+ensure_backup_dir() {
+  if [[ -z $backup_dir ]]; then
+    mkdir -p -- "$backup_root"
+    backup_dir=$(mktemp -d "$backup_root/$(date +%Y%m%d-%H%M%S).XXXXXX")
+  fi
+}
+
+backup_path() {
+  local target=$1
+  local resolved
+  local relative
+  local destination
+
+  [[ -e $target || -L $target ]] || return 0
+
+  # A link already managed by this checkout does not need another backup.
+  if [[ -L $target ]]; then
+    resolved=$(readlink -f -- "$target" 2>/dev/null || true)
+    [[ $resolved == "$repo_root"/* ]] && return 0
+  fi
+
+  relative=${target#"$home_dir"/}
+  ensure_backup_dir
+  destination="$backup_dir/$relative"
+  mkdir -p -- "$(dirname -- "$destination")"
+  cp -a -- "$target" "$destination"
+}
+
+backup_tree_targets() {
+  local source_root=$1
+  local target_root=$2
+  shift 2
+
+  local source
+  local relative
+
+  while IFS= read -r -d '' source; do
+    relative=${source#"$source_root"/}
+    backup_path "$target_root/$relative"
+  done < <(find "$source_root" -type f "$@" -print0)
+}
+
+backup_path "$home_dir/.XCompose"
+backup_path "$home_dir/.ideavimrc"
+backup_path "$home_dir/.inputrc"
+backup_path "$home_dir/.gitmux.conf"
+backup_path "$home_dir/.config/git/config"
+backup_path "$home_dir/.config/herdr/config.toml"
+backup_path "$home_dir/.config/lazygit/config.yml"
+backup_path "$home_dir/.config/omarchy/shell.json"
+backup_path "$home_dir/.config/tmux/tmux.conf"
+backup_path "$home_dir/.config/voxtype/config.toml"
+backup_path "$home_dir/.config/Code/User/settings.json"
+backup_path "$home_dir/.config/Code/User/keybindings.json"
+
+backup_tree_targets "$repo_root/hypr" "$home_dir/.config/hypr" ! -name '*.conf'
+backup_tree_targets "$repo_root/nvim" "$home_dir/.config/nvim"
+
+if [[ -n $backup_dir ]]; then
+  printf 'Backed up existing dotfiles to %s\n' "$backup_dir"
+fi
