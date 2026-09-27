@@ -45,7 +45,8 @@ This command:
 - installs VS Code through Omarchy when needed;
 - installs Node.js, Java, and Go through Omarchy when needed;
 - configures Go's module cache under `~/.cache`;
-- replaces the managed files with symlinks into this repository; and
+- replaces the managed files with symlinks into this repository;
+- enables and starts Syncthing as a user service; and
 - starts browser-based GitHub authentication when needed.
 
 `--force-dotfiles` is required on the first run because a fresh Omarchy installation already contains regular files at
