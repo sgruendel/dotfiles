@@ -1,6 +1,19 @@
 [bootstrap.packages]
 "aur:ai-usagebar-bin" = "latest"
 "aur:gitmux-bin" = "latest"
+"aur:mongodb-compass-bin" = "latest"
+"aur:sinuous" = "latest"
+"aur:tabularis-bin" = "latest"
+"pacman:7zip" = "latest"
+"pacman:git-delta" = "latest"
+"pacman:hyphen-de" = "latest"
+"pacman:keepassxc" = "latest"
+"pacman:meld" = "latest"
+"pacman:playerctl" = "latest"
+"pacman:rclone" = "latest"
+"pacman:shellcheck" = "latest"
+"pacman:syncthing" = "latest"
+"pacman:yazi" = "latest"
 
 [bootstrap.repos]
 "~/.tmux/plugins/tpm" = { url = "https://github.com/tmux-plugins/tpm.git" }
@@ -12,7 +25,26 @@
 "~/.config/omarchy/plugins/quickshell.spotify" = { url = "https://github.com/stappmus/Omarchy-Spotify.git" }
 
 [bootstrap.hooks.pre-dotfiles]
-run = 'bash "{{ config_root }}/bin/backup-dotfiles"'
+run = [
+  'bash "{{ config_root }}/bin/backup-dotfiles"',
+  '''
+for dev_env in node java go; do
+  if [[ ! -d "$HOME/.local/share/mise/installs/$dev_env" ]]; then
+    omarchy install dev-env "$dev_env"
+  fi
+done
+
+go_mod_cache="$HOME/.cache/go"
+if [[ $(go env GOMODCACHE) != "$go_mod_cache" ]]; then
+  go env -w "GOMODCACHE=$go_mod_cache"
+fi
+''',
+  '''
+if ! omarchy-pkg-present visual-studio-code-bin; then
+  omarchy install editor vscode
+fi
+''',
+]
 
 [dotfiles]
 "~/.XCompose" = { source = "X/XCompose", mode = "symlink" }
@@ -33,7 +65,7 @@ run = 'bash "{{ config_root }}/bin/backup-dotfiles"'
 "~/.config/Code/User/keybindings.json" = { source = "Code/keybindings.json", mode = "symlink" }
 
 [tasks.bootstrap]
-description = "Install global mise tools and authenticate GitHub"
+description = "Authenticate GitHub"
 run = '''
 if ! gh auth status >/dev/null 2>&1; then
   gh auth login --web --git-protocol https
