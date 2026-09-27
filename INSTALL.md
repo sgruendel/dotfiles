@@ -1,5 +1,9 @@
 # Installation
 
+This manual installation guide is intended for non-Omarchy Linux distributions and Windows
+machines. For a fresh Omarchy installation, use the automated mise Bootstrap instructions in
+the [README](README.md#fresh-omarchy-installation) instead.
+
 ## Linux
 
 ### Bootstrap setup
