@@ -1,0 +1,98 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+usage() {
+  cat <<'EOF'
+Usage: diff-dotfiles-backups [BACKUP_DIRECTORY]
+
+Compare every bootstrap backup with the current files in this repository using
+delta (backup on the left, repository on the right). Optionally select a single
+timestamped backup directory. Exit status: 0 on success, 2 on errors; differences
+are expected and do not stop the script.
+
+Uses the same DOTFILES_REPO_ROOT and DOTFILES_BACKUP_STATE_HOME overrides as
+backup-dotfiles, falling back to the script's repository and XDG_STATE_HOME.
+EOF
+}
+
+if [[ ${1:-} == --help || ${1:-} == -h ]]; then
+  usage
+  exit 0
+fi
+if (( $# > 1 )); then
+  usage >&2
+  exit 2
+fi
+if ! command -v delta >/dev/null 2>&1; then
+  printf 'Error: delta is required (install git-delta).\n' >&2
+  exit 2
+fi
+
+repo_root=${DOTFILES_REPO_ROOT:-$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)}
+state_home=${DOTFILES_BACKUP_STATE_HOME:-${XDG_STATE_HOME:-$HOME/.local/state}}
+backup_root="$state_home/dotfiles/bootstrap-backups"
+
+if (( $# )); then
+  backup_dirs=("$1")
+else
+  shopt -s nullglob
+  backup_dirs=("$backup_root"/*/)
+fi
+if (( ${#backup_dirs[@]} == 0 )); then
+  printf 'No backup directories found in %s\n' "$backup_root" >&2
+  exit 2
+fi
+
+status=0
+compared=0
+for backup_dir in "${backup_dirs[@]}"; do
+  if [[ ! -d $backup_dir ]]; then
+    printf 'Not a backup directory: %s\n' "$backup_dir" >&2
+    status=2
+    continue
+  fi
+  backup_dir=$(cd -- "$backup_dir" && pwd -P)
+  printf '\nBackup: %s\n' "$backup_dir"
+
+  while IFS= read -r -d '' backup; do
+    relative=${backup#"$backup_dir"/}
+    # Keep these mappings aligned with mise.toml and bin/backup-dotfiles.
+    case "$relative" in
+      .XCompose) source=X/XCompose ;;
+      .ideavimrc) source=ideavim/ideavimrc ;;
+      .inputrc) source=bash/inputrc ;;
+      .gitmux.conf) source=tmux/gitmux.conf ;;
+      .config/Code/User/*) source=Code/${relative#.config/Code/User/} ;;
+      .config/git/*|.config/herdr/*|.config/hypr/*|.config/lazygit/*|\
+      .config/nvim/*|.config/omarchy/*|.config/tmux/*|.config/voxtype/*)
+        source=${relative#.config/} ;;
+      *)
+        printf 'No repository mapping for %s\n' "$backup" >&2
+        status=2
+        continue ;;
+    esac
+
+    if [[ ! -f $backup || ! -f $repo_root/$source ]]; then
+      printf 'Cannot compare (missing or non-file path): %s -> %s\n' \
+        "$backup" "$repo_root/$source" >&2
+      status=2
+      continue
+    fi
+    printf '\n%s -> %s\n' "$relative" "$source"
+    # delta returns 1 for differences; keep going to compare all backups.
+    if delta -- "$backup" "$repo_root/$source"; then
+      :
+    else
+      result=$?
+      if (( result > 1 )); then
+        printf 'delta failed (status %s): %s\n' "$result" "$backup" >&2
+        status=2
+      fi
+    fi
+    compared=$((compared + 1))
+  done < <(find "$backup_dir" \( -type f -o -type l \) -print0 | sort -z)
+done
+
+printf '\nCompared %s backed-up files.\n' "$compared"
+exit "$status"
