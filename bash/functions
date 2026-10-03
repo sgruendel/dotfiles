@@ -3,7 +3,8 @@
 # Creates a new Omarchy migration named after the current unix timestamp.
 omarchyDevAddMigrationNow() {
   cd ~/src/github/omarchy || exit
-  local timestamp=$(date +%s)
+  local timestamp
+  timestamp=$(date +%s)
   local migration_file="migrations/${timestamp}.sh"
   touch "$migration_file"
   nvim "$migration_file"
@@ -13,6 +14,7 @@ omarchyDevAddMigrationNow() {
 # see https://soban.pl/dynamic-tmux-window-titles-with-ssh-and-hostname/
 # Override ssh to temporarily rename the current Tmux window
 # or Herdr tab while the SSH session is active.
+# TODO test with Quattro
 ssh() {
   local host=""
   local arg
@@ -71,4 +73,13 @@ ssh() {
   fi
 
   return "$ssh_status"
+}
+
+# Yazi wrapper function that allows changing the current working directory after running a Yazi command
+function y() {
+	local tmp cwd; tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	command yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd" || builtin true
+	command rm -f -- "$tmp"
 }
