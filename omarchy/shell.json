@@ -52,6 +52,9 @@
           "id": "omarchy.tray"
         },
         {
+          "id": "sgruendel.sonos"
+        },
+        {
           "id": "quickshell.spotify",
           "deviceName": "Omarchy Spotify",
           "idleShutdownMinutes": 15,
