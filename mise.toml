@@ -1,18 +1,25 @@
 [bootstrap.packages]
 "aur:ai-usagebar-bin" = "latest"
+# replaced by OmaWarden: "aur:bitwarden-bin" = "latest"
+# replaced by OmaWarden: "aur:bitwarden-cli-bin" = "latest"
+# included since 4.5: "aur:disktree-bin" = "latest"
 "aur:gitmux-bin" = "latest"
 "aur:mongodb-compass-bin" = "latest"
+"aur:omawarden-bin" = "latest"
+"aur:rptui-bin" = "latest"
 "aur:sinuous" = "latest"
 "aur:tabularis-bin" = "latest"
 "pacman:7zip" = "latest"
 "pacman:git-delta" = "latest"
 "pacman:hyphen-de" = "latest"
 "pacman:keepassxc" = "latest"
+"pacman:lazydocker" = "latest"
 "pacman:meld" = "latest"
 "pacman:playerctl" = "latest"
 "pacman:rclone" = "latest"
 "pacman:shellcheck" = "latest"
 "pacman:syncthing" = "latest"
+"pacman:viu" = "latest"
 "pacman:yazi" = "latest"
 
 [bootstrap.repos]
@@ -30,7 +37,7 @@ run = [
   '''
 for dev_env in node java go; do
   if [[ ! -d "$HOME/.local/share/mise/installs/$dev_env" ]]; then
-    omarchy install dev-env "$dev_env"
+    omarchy install dev env "$dev_env"
   fi
 done
 
@@ -65,7 +72,7 @@ fi
 "~/.config/Code/User/keybindings.json" = { source = "Code/keybindings.json", mode = "symlink" }
 
 [tasks.bootstrap]
-description = "Enable Syncthing and authenticate GitHub"
+description = "Enable Syncthing, authenticate GitHub, and configure Bash and Omarchy plugins"
 run = '''
 systemctl --user enable syncthing.service
 systemctl --user start syncthing.service
@@ -75,4 +82,24 @@ if ! gh auth status >/dev/null 2>&1; then
 fi
 
 gh auth setup-git
+
+bashrc="$HOME/.bashrc"
+touch "$bashrc"
+
+for line in \
+  'source ~/Projects/dotfiles/bash/aliases' \
+  'source ~/Projects/dotfiles/bash/functions'; do
+  if ! grep -Fqx -- "$line" "$bashrc"; then
+    printf '%s\n' "$line" >> "$bashrc"
+  fi
+done
+
+mise use -g jactionlint
+
+# Configure Omarchy plugins
+omarchy plugin add https://github.com/akitaonrails/ai-usagebar.git --enable
+omarchy plugin add https://github.com/icyleaf/omarchy-bitwarden.git --enable
+omarchy plugin add https://github.com/stappmus/Omarchy-Spotify.git --enable
+omarchy plugin add https://github.com/sgruendel/omarchy-airq.git --enable
+omarchy plugin add https://github.com/sgruendel/omarchy-fzf.git --enable
 '''
