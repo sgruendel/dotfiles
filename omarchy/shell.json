@@ -94,6 +94,9 @@
   "plugins": [
     {
       "id": "sgruendel.fzf"
+    },
+    {
+      "id": "icyleaf.bitwarden"
     }
   ]
 }
