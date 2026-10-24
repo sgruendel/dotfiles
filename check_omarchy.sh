@@ -90,10 +90,6 @@ done
 for c in Code/*; do
   o=${BASE}Code/User/${c#*/}
   check_symlink_and_exists "$o"
-
-  # Antigravity is VSCode based and uses the same config
-  oa=${BASE}Antigravity/User/${c#*/}
-  check_symlink_and_exists "$oa"
 done
 
 # gitconfig/config is symlinked to ~/.config/git/config
