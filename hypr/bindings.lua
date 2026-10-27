@@ -43,6 +43,16 @@ o.bind("SUPER + CTRL + M", "Sonos", "omarchy-launch-tui sinuous -d 192.168.7.103
 hl.unbind("SUPER + CTRL + P") -- unbind Power
 o.bind("SUPER + CTRL + P", "Color picker", "pkill hyprpicker || hyprpicker -a")
 
+-- omawarden
+hl.unbind("SUPER + SHIFT + slash") -- unbind 1Password
+o.bind("SUPER + SHIFT + slash", "Omarchy Bitwarden", "omarchy-shell shell toggle icyleaf.bitwarden")
+
+o.window({ class = "org.quickshell", title = "(Bitwarden)" }, {
+  float = true,
+  center = true,
+  size = { 1152, 768 }
+})
+
 -- Logitech MX Mechanical Mini:
 o.bind("SUPER + H", nil, "voxtype record toggle")
 o.bind("SUPER + PERIOD", nil, "omarchy-shell shell toggle omarchy.emojis")
