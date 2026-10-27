@@ -25,11 +25,6 @@
 [bootstrap.repos]
 "~/.tmux/plugins/tpm" = { url = "https://github.com/tmux-plugins/tpm.git" }
 "~/.config/tmux/plugins/catppuccin/tmux" = { url = "https://github.com/catppuccin/tmux.git", ref = "v2.3.0" }
-"~/.config/omarchy/plugins/sgruendel.airq" = { url = "https://github.com/sgruendel/omarchy-airq.git" }
-"~/.config/omarchy/plugins/sgruendel.fzf" = { url = "https://github.com/sgruendel/omarchy-fzf.git" }
-"~/.config/omarchy/plugins/sgruendel.workspaces" = { url = "https://github.com/sgruendel/omarchy-workspaces.git" }
-"~/.config/omarchy/plugins/akitaonrails.ai-usagebar" = { url = "https://github.com/akitaonrails/ai-usagebar.git" }
-"~/.config/omarchy/plugins/quickshell.spotify" = { url = "https://github.com/stappmus/Omarchy-Spotify.git" }
 
 [bootstrap.hooks.pre-dotfiles]
 run = [
@@ -65,6 +60,7 @@ fi
 "~/.config/lazygit/config.yml" = { source = "lazygit/config.yml", mode = "symlink" }
 "~/.config/nvim" = { source = "nvim", mode = "symlink-each" }
 "~/.config/omarchy/shell.json" = { source = "omarchy/shell.json", mode = "symlink" }
+"~/.config/ripgrep/config" = { source = "ripgrep/config", mode = "symlink" }
 "~/.config/tmux/tmux.conf" = { source = "tmux/tmux.conf", mode = "symlink" }
 "~/.config/voxtype/config.toml" = { source = "voxtype/config.toml", mode = "symlink" }
 
@@ -87,6 +83,7 @@ bashrc="$HOME/.bashrc"
 touch "$bashrc"
 
 for line in \
+  'export RIPGREP_CONFIG_PATH=~/.config/ripgrep/config' \
   'source ~/Projects/dotfiles/bash/aliases' \
   'source ~/Projects/dotfiles/bash/functions'; do
   if ! grep -Fqx -- "$line" "$bashrc"; then
