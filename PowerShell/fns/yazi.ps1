@@ -1,3 +1,4 @@
+# Yazi, see https://yazi-rs.github.io/docs/quick-start/
 function y {
 	$tmp = (New-TemporaryFile).FullName
 	yazi.exe @args --cwd-file="$tmp"
