@@ -56,6 +56,7 @@ fi
 
 "~/.config/git/config" = { source = "git/config", mode = "symlink" }
 "~/.config/herdr/config.toml" = { source = "herdr/config.toml", mode = "symlink" }
+"~/.config/herdr-app/keys.json" = { source = "herdr-app/keys.json", mode = "symlink" }
 "~/.config/hypr" = { source = "hypr", mode = "symlink-each", exclude = ["*.conf"] }
 "~/.config/lazygit/config.yml" = { source = "lazygit/config.yml", mode = "symlink" }
 "~/.config/nvim" = { source = "nvim", mode = "symlink-each" }

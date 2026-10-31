@@ -46,8 +46,10 @@ This command:
 - installs Node.js, Java, and Go through Omarchy when needed;
 - configures Go's module cache under `~/.cache`;
 - replaces the managed files with symlinks into this repository;
-- enables and starts Syncthing as a user service; and
-- starts browser-based GitHub authentication when needed.
+- creates the OMAwarden UWSM environment file;
+- enables and starts Syncthing as a user service;
+- starts browser-based GitHub authentication when needed; and
+- adds the dotfile aliases and functions to `~/.bashrc` if they are not already present.
 
 `--force-dotfiles` is required on the first run because a fresh Omarchy installation already contains regular files at
 several managed paths. Those files are backed up before mise replaces them.
