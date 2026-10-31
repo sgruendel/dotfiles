@@ -40,6 +40,11 @@ done
 #   check_symlink_and_exists "$o"
 # done
 
+for c in foot/*; do
+  o=${BASE}foot/${c#*/}
+  check_symlink_and_exists "$o"
+done
+
 for c in herdr/*; do
   o=${BASE}herdr/${c#*/}
   check_symlink_and_exists "$o"

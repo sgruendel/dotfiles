@@ -23,6 +23,11 @@ done
 #   delta "$c" "$o"
 # done
 
+for c in foot/*; do
+  o=${BASE}foot/${c#*/}
+  delta "$c" "$o"
+done
+
 for c in herdr/*; do
   o=${BASE}herdr/${c#*/}
   delta "$c" "$o"
