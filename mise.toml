@@ -54,6 +54,7 @@ fi
 "~/.inputrc" = { source = "bash/inputrc", mode = "symlink" }
 "~/.gitmux.conf" = { source = "tmux/gitmux.conf", mode = "symlink" }
 
+"~/.config/foot/foot.ini" = { source = "foot/foot.ini", mode = "symlink" }
 "~/.config/git/config" = { source = "git/config", mode = "symlink" }
 "~/.config/herdr/config.toml" = { source = "herdr/config.toml", mode = "symlink" }
 "~/.config/herdr-app/keys.json" = { source = "herdr-app/keys.json", mode = "symlink" }
