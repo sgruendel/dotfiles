@@ -45,6 +45,11 @@ for c in herdr/*; do
   check_symlink_and_exists "$o"
 done
 
+for c in herdr-app/*.json; do
+  o=${BASE}herdr-app/${c#*/}
+  check_symlink_and_exists "$o"
+done
+
 for c in lazygit/*; do
   o=${BASE}lazygit/${c#*/}
   check_symlink_and_exists "$o"

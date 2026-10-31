@@ -64,7 +64,7 @@ for backup_dir in "${backup_dirs[@]}"; do
       .inputrc) source=bash/inputrc ;;
       .gitmux.conf) source=tmux/gitmux.conf ;;
       .config/Code/User/*) source=Code/${relative#.config/Code/User/} ;;
-      .config/git/*|.config/herdr/*|.config/hypr/*|.config/lazygit/*|\
+      .config/git/*|.config/herdr/*|.config/herdr-app/*|.config/hypr/*|.config/lazygit/*|\
       .config/nvim/*|.config/omarchy/*|.config/tmux/*|.config/voxtype/*)
         source=${relative#.config/} ;;
       *)
