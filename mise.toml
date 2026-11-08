@@ -70,7 +70,7 @@ fi
 "~/.config/Code/User/keybindings.json" = { source = "Code/keybindings.json", mode = "symlink" }
 
 [tasks.bootstrap]
-description = "Configure Omarchy Bitwarden, Syncthing, GitHub, Bash, and Omarchy plugins"
+description = "Configure Omarchy Bitwarden, Syncthing, Bash, and Omarchy plugins"
 run = '''
 omawarden_env_file="$HOME/.config/uwsm/env.d/omawarden"
 omawarden_env="export SSH_AUTH_SOCK=\"\$XDG_RUNTIME_DIR/omawarden-ssh-agent.sock\""
@@ -85,12 +85,6 @@ chmod 0644 "$omawarden_env_file"
 
 systemctl --user enable syncthing.service
 systemctl --user start syncthing.service
-
-if ! gh auth status >/dev/null 2>&1; then
-  gh auth login --web --git-protocol https
-fi
-
-gh auth setup-git
 
 bashrc="$HOME/.bashrc"
 touch "$bashrc"
