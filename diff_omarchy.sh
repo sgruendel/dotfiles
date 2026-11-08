@@ -33,6 +33,12 @@ for c in herdr/*; do
   delta "$c" "$o"
 done
 
+for c in herdr-app/*; do
+  # The herdr-app configs are in default, not config
+  o=${BASE}../default/herdr-app/${c#*/}
+  delta "$c" "$o"
+done
+
 for c in lazygit/*; do
   o=${BASE}lazygit/${c#*/}
   delta "$c" "$o"
