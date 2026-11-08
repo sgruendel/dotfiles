@@ -29,3 +29,7 @@ require("default.hypr.toggles")
 -- o.window("qemu", { workspace = "5" })
 
 o.window("org.omarchy.sinuous", { float = true })
+
+-- Treat the Herdr app as a terminal, so universal copy/paste (SUPER + C/V)
+-- sends CTRL + Insert / SHIFT + Insert instead of CTRL + C / CTRL + V
+o.window("herdr-app", { tag = "+terminal" })
