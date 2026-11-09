@@ -1,0 +1,37 @@
+{
+  "programs": {
+    "claude-auto": {
+      "name": "Claude Code (auto)",
+      "icon": "icons/claude.svg",
+      "run": [
+        "claude",
+        "--permission-mode",
+        "auto"
+      ],
+      "tint": false,
+      "tile": "#1c1d21"
+    },
+    "codex-approve": {
+      "name": "Codex (approve for me)",
+      "icon": "icons/codex.svg",
+      "run": [
+        "codex",
+        "--no-daemon",
+        "--approve-for-me"
+      ],
+      "tint": false,
+      "tile": "#1c1d21"
+    },
+    "opencode-auto": {
+      "name": "OpenCode (auto)",
+      "icon": "icons/opencode.svg",
+      "run": [
+        "opencode",
+        "--auto"
+      ],
+      "tint": true,
+      "tile": "#1c1d21",
+      "color": "#ffffff"
+    }
+  }
+}

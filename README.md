@@ -20,7 +20,8 @@ Bootstrap. It also installs `rclone`, `syncthing`, `git-delta`, `keepassxc`, `hy
 
 Node.js, Java, and Go are installed through Omarchy when they are not already present. Go's
 module cache is configured at `~/.cache/go`. VS Code is also installed through Omarchy when
-needed.
+needed. Herdr App is installed from its
+[official release installer](https://releases.herdr.dev/app/install.sh) when missing.
 
 ### 2. Bootstrap
 
@@ -42,6 +43,7 @@ This command:
 - installs the declared Arch and AUR packages;
 - clones the Tmux and Omarchy plugin repositories;
 - backs up existing configuration files;
+- installs Herdr App when needed;
 - installs VS Code through Omarchy when needed;
 - installs Node.js, Java, and Go through Omarchy when needed;
 - configures Go's module cache under `~/.cache`;

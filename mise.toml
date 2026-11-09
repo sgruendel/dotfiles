@@ -30,6 +30,12 @@
 run = [
   'bash "{{ config_root }}/bin/backup-dotfiles"',
   '''
+set -o pipefail
+if [[ ! -x "$HOME/.local/bin/herdr-app" ]] && ! command -v herdr-app >/dev/null 2>&1; then
+  curl -fsSL https://releases.herdr.dev/app/install.sh | sh
+fi
+''',
+  '''
 for dev_env in node java go; do
   if [[ ! -d "$HOME/.local/share/mise/installs/$dev_env" ]]; then
     omarchy install dev env "$dev_env"
@@ -58,6 +64,7 @@ fi
 "~/.config/git/config" = { source = "git/config", mode = "symlink" }
 "~/.config/herdr/config.toml" = { source = "herdr/config.toml", mode = "symlink" }
 "~/.config/herdr-app/keys.json" = { source = "herdr-app/keys.json", mode = "symlink" }
+"~/.config/herdr-app/programs.json" = { source = "herdr-app/programs.json", mode = "symlink" }
 "~/.config/hypr" = { source = "hypr", mode = "symlink-each", exclude = ["*.conf"] }
 "~/.config/lazygit/config.yml" = { source = "lazygit/config.yml", mode = "symlink" }
 "~/.config/nvim" = { source = "nvim", mode = "symlink-each" }
