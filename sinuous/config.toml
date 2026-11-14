@@ -1,0 +1,9 @@
+[core]
+# The speakers to connect to, as IPv4 addresses or names. Speakers are
+# discovered via SSDP if not set. `--device` overrides this.
+devices = ["SonosZP-BueroL", "SonosZP-BueroR"]
+
+[ui]
+album_art = true
+nerd_font = true
+theme = "terminal"

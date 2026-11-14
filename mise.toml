@@ -71,6 +71,7 @@ fi
 "~/.config/nvim" = { source = "nvim", mode = "symlink-each" }
 "~/.config/omarchy/shell.json" = { source = "omarchy/shell.json", mode = "symlink" }
 "~/.config/ripgrep/config" = { source = "ripgrep/config", mode = "symlink" }
+"~/.config/sinuous/config.toml" = { source = "sinuous/config.toml", mode = "symlink" }
 "~/.config/tmux/tmux.conf" = { source = "tmux/tmux.conf", mode = "symlink" }
 "~/.config/voxtype/config.toml" = { source = "voxtype/config.toml", mode = "symlink" }
 
