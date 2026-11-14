@@ -1,0 +1,11 @@
+[devices."serial:2511scv1mvs8".bindings.KeyDictation]
+RunShellCommand = "omarchy dictation toggle"
+
+[devices."serial:2511scv1mvs8".bindings.KeyEmoji]
+RunShellCommand = "omarchy menu emoji"
+
+[devices."serial:2511scv1mvs8".bindings.KeyScreenCapture]
+RunShellCommand = "omarchy capture screenshot"
+
+[devices."serial:2511scv1mvs8".bindings.KeyMicMute]
+RunShellCommand = "omarchy audio input mute"

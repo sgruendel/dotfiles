@@ -6,6 +6,7 @@
 "aur:gitmux-bin" = "latest"
 "aur:mongodb-compass-bin" = "latest"
 "aur:omawarden-bin" = "latest"
+"aur:openlogi-bin" = "latest"
 "aur:rptui-bin" = "latest"
 "aur:sinuous" = "latest"
 "aur:tabularis-bin" = "latest"
@@ -77,7 +78,7 @@ fi
 "~/.config/Code/User/keybindings.json" = { source = "Code/keybindings.json", mode = "symlink" }
 
 [tasks.bootstrap]
-description = "Configure Omarchy Bitwarden, Syncthing, Bash, and Omarchy plugins"
+description = "Configure Omarchy Bitwarden, OpenLogi, Syncthing, Bash, and Omarchy plugins"
 run = '''
 omawarden_env_file="$HOME/.config/uwsm/env.d/omawarden"
 omawarden_env="export SSH_AUTH_SOCK=\"\$XDG_RUNTIME_DIR/omawarden-ssh-agent.sock\""
@@ -92,6 +93,27 @@ chmod 0644 "$omawarden_env_file"
 
 systemctl --user enable syncthing.service
 systemctl --user start syncthing.service
+
+# Append the keyboard block once; existing keyboard bindings stay user-managed.
+openlogi_config="${XDG_CONFIG_HOME:-$HOME/.config}/openlogi/config.toml"
+mkdir -p -- "$(dirname -- "$openlogi_config")"
+(
+  flock -x 9
+  if [[ ! -e $openlogi_config ]]; then
+    (umask 077; printf 'schema_version = 11\n' > "$openlogi_config")
+  fi
+  if ! grep -Eq '^\[devices\."serial:2511scv1mvs8"\.bindings(\.|\])' "$openlogi_config"; then
+    cp -p -- "$openlogi_config" "$openlogi_config.before-bootstrap.$(date +%Y%m%d-%H%M%S)"
+    printf '\n' >> "$openlogi_config"
+    cat "{{ config_root }}/openlogi/bindings.toml" >> "$openlogi_config"
+  fi
+) 9> "$openlogi_config.lock"
+# Pass the current Hyprland session to systemd services before starting the agent.
+if [[ -n ${HYPRLAND_INSTANCE_SIGNATURE:-} && -n ${XDG_RUNTIME_DIR:-} ]]; then
+  systemctl --user import-environment HYPRLAND_INSTANCE_SIGNATURE XDG_RUNTIME_DIR
+fi
+systemctl --user enable openlogi-agent.service
+systemctl --user restart openlogi-agent.service
 
 bashrc="$HOME/.bashrc"
 touch "$bashrc"
