@@ -37,7 +37,7 @@ hl.unbind("SUPER + SHIFT + ALT + E")
 o.bind("SUPER + SHIFT + ALT + E", "Email Work", "omarchy-launch-webapp 'https://outlook.office.com/mail' --user-data-dir='" .. paths.home .. "/.config/chromium-profile/garmin'")
 o.bind("SUPER + SHIFT + ALT + T", "Teams Work", "omarchy-launch-webapp 'https://teams.cloud.microsoft/' --user-data-dir='" .. paths.home .. "/.config/chromium-profile/garmin'")
 
-o.bind("SUPER + CTRL + M", "Sonos", "omarchy-launch-tui sinuous -d 192.168.7.103,192.168.7.104")
+o.bind("SUPER + CTRL + M", "Sonos", "omarchy-launch-tui sinuous")
 hl.unbind("SUPER + CTRL + P") -- unbind Power
 o.bind("SUPER + CTRL + P", "Color picker", "pkill hyprpicker || hyprpicker -a")
 

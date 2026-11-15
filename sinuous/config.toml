@@ -1,7 +1,7 @@
 [core]
 # The speakers to connect to, as IPv4 addresses or names. Speakers are
 # discovered via SSDP if not set. `--device` overrides this.
-devices = ["SonosZP-BueroL", "SonosZP-BueroR"]
+devices = ["192.168.7.103", "192.168.7.104"]
 
 [ui]
 album_art = true
