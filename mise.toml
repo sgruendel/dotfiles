@@ -2,7 +2,6 @@
 "aur:ai-usagebar-bin" = "latest"
 # replaced by OmaWarden: "aur:bitwarden-bin" = "latest"
 # replaced by OmaWarden: "aur:bitwarden-cli-bin" = "latest"
-# included since 4.5: "aur:disktree-bin" = "latest"
 "aur:gitmux-bin" = "latest"
 "aur:mongodb-compass-bin" = "latest"
 "aur:omawarden-bin" = "latest"
@@ -118,6 +117,10 @@ systemctl --user restart openlogi-agent.service
 
 bashrc="$HOME/.bashrc"
 touch "$bashrc"
+
+# open-java-format Command Line, see https://openjavaformat.dev/get-started/command-line/
+curl -fLo ~/.local/bin/open-java-format "https://github.com/openjavaformat/open-java-format/releases/latest/download/open-java-format-linux-glibc_x86-64"
+chmod +x ~/.local/bin/open-java-format
 
 for line in \
   'export RIPGREP_CONFIG_PATH=~/.config/ripgrep/config' \
